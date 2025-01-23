@@ -1,11 +1,34 @@
-import { UserButton } from "@clerk/nextjs";
+"use client";
+import {
+  SignInButton,
+  SignUpButton,
+  UserButton,
+  SignedOut,
+  SignedIn,
+  useAuth,
+} from "@clerk/nextjs";
 
+import { useLayoutEffect } from "react";
+import { useRouter } from "next/navigation";
 export default function Home() {
+  const { isSignedIn } = useAuth();
+  const router = useRouter();
+
+  useLayoutEffect(() => {
+    if (isSignedIn) {
+      router.push("/onboarding"); // 登录后跳转到 /onboarding
+    }
+  }, [isSignedIn]);
   return (
     <>
       <main>
-        <h1>Threads</h1>
-        2<UserButton />
+        <SignedOut>
+          <SignInButton />
+          <SignUpButton />
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
       </main>
     </>
   );
