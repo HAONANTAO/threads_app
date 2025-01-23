@@ -21,15 +21,9 @@ export default function Home() {
   }, [isSignedIn]);
   return (
     <>
-      <main>
-        <SignedOut>
-          <SignInButton />
-          <SignUpButton />
-        </SignedOut>
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
-      </main>
+      <>
+        <h1 className="head-text text-left">Home</h1>
+      </>
     </>
   );
 }
