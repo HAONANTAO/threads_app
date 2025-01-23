@@ -17,7 +17,17 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`antialiased`}>{children}</body>
+        <body className={`antialiased`}>
+          <Topbar />
+          <main>
+            <LeftSidebar />
+            <section className="main-container">
+              <div className="w-full max-x-4xl">{children}</div>
+            </section>
+            <RightSidebar />
+          </main>
+          <Bottombar />
+        </body>
       </html>
     </ClerkProvider>
   );
