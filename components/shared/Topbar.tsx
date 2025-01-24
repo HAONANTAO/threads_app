@@ -4,6 +4,7 @@ import {
   SignOutButton,
   // UserButton,
 } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -35,6 +36,7 @@ const Topbar = () => {
         {/* <UserButton /> */}
         <OrganizationSwitcher
           appearance={{
+            baseTheme: dark,
             elements: {
               organizationSwitcherTrigger: "py-2 px-4",
             },
