@@ -1,4 +1,5 @@
 "use client";
+import { SignedIn, SignOutButton } from "@clerk/nextjs";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -34,6 +35,22 @@ const LeftSidebar = () => {
             </div>
           );
         })}
+      </div>
+
+      <div className="mt-10 px-6">
+        <SignedIn>
+          <SignOutButton>
+            <div className="flex cursor-pointer">
+              <Image
+                src="/assets/logout.svg"
+                alt="logout"
+                width="24"
+                height="24"
+              />
+              <p className="text-light-2 max-lg:hidden mx-2">LogOut</p>
+            </div>
+          </SignOutButton>
+        </SignedIn>
       </div>
     </section>
   );
