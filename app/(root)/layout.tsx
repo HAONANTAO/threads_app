@@ -26,7 +26,8 @@ export default function RootLayout({
       <html lang="en">
         <body className={`antialiased`}>
           <Topbar />
-          <main>
+          {/* flex-row */}
+          <main className="flex ">
             <LeftSidebar />
             <section className="main-container">
               <div className="w-full max-x-4xl">{children}</div>
