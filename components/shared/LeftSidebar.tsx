@@ -10,7 +10,6 @@ const LeftSidebar = () => {
   const router = useRouter();
   const pathname = usePathname();
 
- 
   return (
     <section className="custom-scrollbar leftsidebar">
       <div className="flex w-full flex-1 flex-col gap-6 px-6">
@@ -39,9 +38,10 @@ const LeftSidebar = () => {
         })}
       </div>
 
+      {/* signout button */}
       <div className="mt-10 px-6">
         <SignedIn>
-          <SignOutButton redirectUrl="/sign-in" >
+          <SignOutButton redirectUrl="/sign-in">
             <div className="flex cursor-pointer p-4 gap-4">
               <Image
                 src="/assets/logout.svg"

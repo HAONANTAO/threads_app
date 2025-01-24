@@ -11,6 +11,9 @@ import Bottombar from "@/components/shared/Bottombar";
 export const metadata = {
   title: "Threads",
   description: "A Next js 13 Meta Application",
+  icons: {
+    icon: "/favicon.ico", // 通过 metadata 指定 favicon
+  },
 };
 
 export default function RootLayout({
