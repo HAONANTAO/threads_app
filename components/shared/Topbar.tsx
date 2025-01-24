@@ -27,7 +27,13 @@ const Topbar = () => {
           </SignedIn>
         </div>
 
-        <OrganizationSwitcher />
+        <OrganizationSwitcher
+          appearance={{
+            elements: {
+              organizationSwitcherTrigger: "py-2 px-4",
+            },
+          }}
+        />
       </div>
     </nav>
   );
