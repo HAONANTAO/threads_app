@@ -17,6 +17,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserValidation } from "@/lib/validations/user";
 import Image from "next/image";
+import { Textarea } from "../ui/textarea";
 interface Props {
   user: {
     id: string;
@@ -29,7 +30,7 @@ interface Props {
   btnTitle: string;
 }
 const AccountProfile = ({ user, btnTitle }: Props) => {
-  // 1. Define your form.
+  // 1. Define your form.管理表单状态
   const form = useForm({
     resolver: zodResolver(UserValidation),
     defaultValues: {
@@ -39,6 +40,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       bio: "",
     },
   });
+  // 图片upload显示
   const handleImage = (
     e: ChangeEvent,
     fieldChange: (value: string) => void,
@@ -58,6 +60,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col justify-start gap-10">
+          {/* 图片上传 */}
           <FormField
             control={form.control}
             name="profile_photo"
@@ -88,15 +91,71 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   <Input
                     type="file"
                     accept="image/*"
-                    placeholder="Upload a photot"
+                    placeholder="Upload a photo"
                     className="account-form_image-input"
-                    onCahnge={(e) => handleImage(e, field.onChange)}
+                    onChange={(e) => handleImage(e, field.onChange)}
                   />
                 </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
-                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* 名字 */}
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem className="flex items-center gap-3 w-full">
+                <FormLabel className="text-base-semibold text-light-2">
+                  Name
+                </FormLabel>
+                <FormControl className="flex-1 text-base-semibold text-gray-200">
+                  <Input
+                    type="text"
+                    className="account-form_input no-focus"
+                    {...field}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+
+          {/* username */}
+          <FormField
+            control={form.control}
+            name="username"
+            render={({ field }) => (
+              <FormItem className="flex items-center gap-3 w-full">
+                <FormLabel className="text-base-semibold text-light-2">
+                  Username
+                </FormLabel>
+                <FormControl className="flex-1 text-base-semibold text-gray-200">
+                  <Input
+                    type="text"
+                    className="account-form_input no-focus"
+                    {...field}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+
+          {/* bio */}
+          <FormField
+            control={form.control}
+            name="bio"
+            render={({ field }) => (
+              <FormItem className="flex items-center gap-3 w-full">
+                <FormLabel className="text-base-semibold text-light-2">
+                  Bio
+                </FormLabel>
+                <FormControl className="flex-1 text-base-semibold text-gray-200">
+                  <Textarea
+                    rows={10}
+                    className="account-form_input no-focus"
+                    {...field}
+                  />
+                </FormControl>
               </FormItem>
             )}
           />

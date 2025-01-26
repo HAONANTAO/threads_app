@@ -4,8 +4,8 @@ import React from "react";
 
 import "../globals.css";
 export const metadata = {
-  title: "Threads",
-  description: "A Next js 13 Meta Application",
+  title: "Mock_Threads",
+  description: "A Next js 13 Meta Application of Mock_Threads",
 };
 
 // fonts
