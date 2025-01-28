@@ -36,6 +36,8 @@
 
 # **Description**
 
+The Mock Threads can do lots of features like the real society application.
+
 # **Version**：
 
 # **Prerequisites**：
