@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -20,16 +20,17 @@ import Image from "next/image";
 import { Textarea } from "../ui/textarea";
 interface Props {
   user: {
-    id: string;
+    id: string | undefined;
     objectId: string;
-    username: string;
+    username: string | null | undefined;
     name: string;
     bio: string;
-    image: string;
+    image: string | undefined;
   };
   btnTitle: string;
 }
 const AccountProfile = ({ user, btnTitle }: Props) => {
+  const [files, setFiles] = useState<File[]>([]);
   // 1. Define your form.管理表单状态
   const form = useForm({
     resolver: zodResolver(UserValidation),
@@ -47,6 +48,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
   ) => {
     e.preventDefault();
   };
+
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof UserValidation>) {
     // Do something with the form values.
