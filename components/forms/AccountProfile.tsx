@@ -18,6 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { UserValidation } from "@/lib/validations/user";
 import Image from "next/image";
 import { Textarea } from "../ui/textarea";
+import { isBase64Image } from "@/lib/utils";
 interface Props {
   user: {
     id: string | undefined;
@@ -76,7 +77,8 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     // ✅ This will be type-safe and validated.
     const blob = values.profile_photo;
 
-    const hasImageChanged = isBase64Image(blob)
+    // 是的，通常情况下，加载时的图片（比如显示在页面上的默认占位图或加载图标）并不是 Base64 格式，而是一个 URL 指向一个外部文件或资源。只有在 用户上传图片时，浏览器会将图片转换为 Base64 编码，并通常通过 FileReader.readAsDataURL() 来读取文件，并生成一个 Base64 字符串。
+    const hasImageChanged = isBase64Image(blob);
   }
 
   return (
