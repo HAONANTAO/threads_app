@@ -33,6 +33,7 @@ interface Props {
 }
 const AccountProfile = ({ user, btnTitle }: Props) => {
   const [files, setFiles] = useState<File[]>([]);
+  const {startUpload} = useUploadThing("media")
   // 1. Define your form.管理表单状态
   const form = useForm({
     resolver: zodResolver(UserValidation),
@@ -73,7 +74,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
   };
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof UserValidation>) {
+  const onSubmit = async (values: z.infer<typeof UserValidation>) => {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     const blob = values.profile_photo;
@@ -81,10 +82,10 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     // 是的，通常情况下，加载时的图片（比如显示在页面上的默认占位图或加载图标）并不是 Base64 格式，而是一个 URL 指向一个外部文件或资源。只有在 用户上传图片时，浏览器会将图片转换为 Base64 编码，并通常通过 FileReader.readAsDataURL() 来读取文件，并生成一个 Base64 字符串。
     const hasImageChanged = isBase64Image(blob);
 
-    if(hasImageChanged){
-      const imgRes = useUpload
+    if (hasImageChanged) {
+      const imgRes = await startUpload(files);
     }
-  }
+  };
 
   return (
     <>
