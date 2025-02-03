@@ -141,6 +141,68 @@ and many more, including code architecture and reusability
 
 # **Tech_Stack**：
 
+**Backend**
+
+
+
+- **Node.js**: Serves as the runtime environment for the backend server. Its asynchronous, non - blocking I/O capabilities enable it to handle a large number of concurrent requests efficiently, providing a stable foundation for the entire application.
+- **Micro**: A lightweight web framework on top of Node.js. It simplifies the process of building server - side applications, especially microservices, by offering a minimalistic and easy - to - use API. It helps in quickly setting up routes and handling requests, contributing to the overall efficiency of the backend.
+- **Mongoose**: An Object Data Modeling (ODM) library for MongoDB and Node.js. It provides a straightforward way to interact with the MongoDB database, allowing developers to define schemas, models, and perform database operations such as creating, reading, updating, and deleting data. This simplifies the data management aspect of the application.
+- **Svix**: A webhook infrastructure that simplifies the process of sending, receiving, and managing webhooks. It helps in building reliable and secure communication channels between different parts of the application or with external services.
+
+
+
+**Frontend**
+
+
+
+- **React.js**: A JavaScript library for building user interfaces. It uses a virtual DOM to optimize UI updates, enabling efficient rendering and a smooth user experience. React's component - based architecture makes it easy to manage and reuse UI components, facilitating the development of complex and modular user interfaces.
+- **Next.js**: A React framework that enhances the development process by providing features like server - side rendering (SSR), static site generation (SSG), and automatic code splitting. It simplifies the deployment and performance optimization of React applications, making it suitable for building production - ready web applications.
+- **@clerk/nextjs & @clerk/themes**: Clerk is an authentication solution. The `@clerk/nextjs` package integrates Clerk's authentication functionality seamlessly with Next.js applications. `@clerk/themes` provides pre - built themes to customize the look and feel of the authentication components, making it easier to implement secure user authentication with a consistent design.
+- **@hookform/resolvers & react - hook - form**: `react - hook - form` is a performant and easy - to - use form library for React. It helps in handling form states, validations, and submissions efficiently. `@hookform/resolvers` extends its capabilities by integrating with schema - based validation libraries like Zod, enabling more robust form validations.
+- **@radix - ui/react - \* components**: Radix UI provides a set of low - level, accessible, and unstyled React components. Components like `@radix - ui/react - label`, `@radix - ui/react - menubar`, `@radix - ui/react - select`, `@radix - ui/react - slot`, `@radix - ui/react - tabs`, and `@radix - ui/react - toast` are used to build high - quality, interactive UI elements. They offer a great starting point for customizing and building user interfaces with a focus on accessibility.
+- **lucide - react**: A library of React icons. It provides a wide range of high - quality, customizable icons that can be easily integrated into the application's UI. These icons enhance the visual appeal and usability of the application by providing clear visual cues to the users.
+
+
+
+**Styling**
+
+
+
+- **Tailwindcss**: A utility - first CSS framework. It allows developers to rapidly build custom user interfaces by using pre - defined utility classes. Tailwindcss's flexibility and ease of use make it a popular choice for styling modern web applications.
+- **tailwind - merge**: A utility that helps in merging Tailwind CSS classes in a smart way. It simplifies the process of combining multiple classes without conflicts, making it easier to manage complex styling scenarios.
+- **tailwindcss - animate**: A plugin for Tailwind CSS that adds animation capabilities. It allows developers to easily add smooth and engaging animations to the application's UI, enhancing the overall user experience.
+- **class - variance - authority**: It simplifies the management of conditional classes in React applications. This is especially useful when dealing with different states or variants of UI components, making the code more maintainable and the styling more modular.
+- **clsx**: A lightweight utility for conditionally joining class names in JavaScript. It helps in writing more concise and flexible code when applying different classes based on certain conditions in React components.
+
+
+
+**Type Checking and Linting**
+
+
+
+- **TypeScript**: A typed superset of JavaScript. It adds static type checking to JavaScript, catching many errors during development and making the code more robust and maintainable. TypeScript's strong typing system helps in writing more reliable code, especially in large - scale applications.
+- **@types/node, @types/react, @types/react - dom**: These are type definition packages for Node.js, React, and React DOM respectively. They provide type information for the corresponding JavaScript libraries, enabling better integration with TypeScript and enhancing the development experience.
+- **ESLint**: A popular linting tool for JavaScript and TypeScript. It helps in enforcing coding standards, catching potential errors, and improving the overall quality of the code. ESLint's configuration files, such as `eslint - config - next`, `eslint - config - prettier`, and `eslint - config - standard`, are used to customize the linting rules according to the project's requirements.
+- **eslint - plugin - tailwindcss**: An ESLint plugin specifically for Tailwind CSS. It helps in detecting and fixing issues related to Tailwind CSS usage in the code, ensuring that the styling code follows best practices.
+
+
+
+**Pre - processor and Deployment**
+
+
+
+- **PostCSS**: A tool for transforming CSS with JavaScript plugins. It can be used to perform tasks like autoprefixing, which adds vendor - specific prefixes to CSS rules, ensuring cross - browser compatibility. `autoprefixer` is a popular PostCSS plugin used for this purpose.
+- **Prettier**: An opinionated code formatter. It automatically formats the code according to a set of predefined rules, making the codebase more consistent and easier to read. It can be integrated with other tools like ESLint to ensure that the code is not only formatted correctly but also follows the defined coding standards.
+
+
+
+**File Upload**
+
+
+
+- **@uploadthing/react & uploadthing**: `uploadthing` is a file upload solution for web applications. The `@uploadthing/react` package provides React components and hooks to easily integrate file upload functionality into React applications. It simplifies the process of handling file uploads, including validation, progress tracking, and integration with cloud storage providers.
+
 # **API_Documentation**：
 
 ### 
