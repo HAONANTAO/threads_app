@@ -33,6 +33,7 @@ interface Props {
 }
 const AccountProfile = ({ user, btnTitle }: Props) => {
   const [files, setFiles] = useState<File[]>([]);
+
   const { startUpload } = useUploadThing("media");
   // 1. Define your form.管理表单状态
   const form = useForm({
@@ -54,23 +55,19 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
 
     const fileReader = new FileReader();
 
-    if (!e.target.files || e.target.files.length === 0) return;
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      setFiles(Array.from(e.target.files));
 
-    const file = e.target.files[0];
-    setFiles(Array.from(e.target.files));
+      if (!file.type.includes("image")) return;
 
-    if (!file.type.includes("image")) return;
+      fileReader.onload = async (event) => {
+        const imageDataUrl = event.target?.result?.toString() || "";
+        fieldChange(imageDataUrl);
+      };
 
-    fileReader.onload = (event) => {
-      if (!event.target?.result) return;
-      fieldChange(event.target.result.toString());
-    };
-
-    fileReader.onerror = () => {
-      console.error("文件读取失败");
-    };
-
-    fileReader.readAsDataURL(file);
+      fileReader.readAsDataURL(file);
+    }
   };
 
   // 2. Define a submit handler.
@@ -83,12 +80,12 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     const hasImageChanged = isBase64Image(blob);
 
     // 有改动图片就变化显示
-    if (hasImageChanged) {
-      const imgRes = await startUpload(files);
+    if (hasImageChanged && files.length > 0) {
+      const imgRes = await startUpload(files); // 使用原始文件对象进行上传
 
-      if (imgRes && imgRes[0].fileUrl) {
-        values.profile_photo = imgRes[0].fileUrl;
-      }
+      // if (imgRes && imgRes[0]?.fileUrl) {
+      //   values.profile_photo = imgRes[0].fileUrl;
+      // }
     }
     // TODO: update user profile
   };
