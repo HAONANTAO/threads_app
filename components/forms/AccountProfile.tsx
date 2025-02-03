@@ -43,11 +43,29 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
   });
   // 图片upload显示
   const handleImage = (
-    e: ChangeEvent,
+    e: ChangeEvent<HTMLInputElement>,
     fieldChange: (value: string) => void,
   ) => {
     e.preventDefault();
+    // js window内置类
     const fileReader = new FileReader();
+    // check files
+    if (e.target.files && e.target.files.length > 1) {
+      // has
+      const file = e.target.files[0];
+      setFiles(Array.from(e.target.files));
+
+      // 没有图片就出去了
+      if (!file.type.includes("image")) {
+        return;
+      }
+      fileReader.onload = async (event) => {
+        const imageDataUrl = event.target?.result?.toString() || "";
+        // update the field
+        fieldChange(imageDataUrl);
+      };
+      fileReader.readAsDataURL(file)
+    }
   };
 
   // 2. Define a submit handler.
