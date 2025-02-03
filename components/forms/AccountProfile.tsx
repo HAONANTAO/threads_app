@@ -47,6 +47,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     fieldChange: (value: string) => void,
   ) => {
     e.preventDefault();
+    const fileReader = new FileReader();
   };
 
   // 2. Define a submit handler.
