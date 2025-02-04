@@ -62,8 +62,8 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
 
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      setFiles(Array.from(e.target.files));
-
+      // setFiles(Array.from(e.target.files));
+      setFiles([file]); // 直接存储原始文件对象
       if (!file.type.includes("image")) return;
 
       fileReader.onload = async (event) => {
@@ -87,10 +87,16 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     // 有改动图片就变化显示
     if (hasImageChanged && files.length > 0) {
       const imgRes = await startUpload(files); // 使用原始文件对象进行上传
+      console.log(imgRes); // 查看返回的数据结构
 
-      // if (imgRes && imgRes[0]?.fileUrl) {
-      //   values.profile_photo = imgRes[0].fileUrl;
-      // }
+      // 正确解析响应结构
+      if (imgRes?.[0]?.url) {
+        // 注意这里改为访问 .url
+        values.profile_photo = imgRes[0].url;
+      } else {
+        console.error("上传失败，响应结构:", imgRes);
+        return;
+      }
     }
 
     //  update user profile
