@@ -11,14 +11,14 @@ import {
 import { useLayoutEffect } from "react";
 import { useRouter } from "next/navigation";
 export default function Home() {
-  const { isSignedIn } = useAuth();
-  const router = useRouter();
+  // const { isSignedIn } = useAuth();
+  // const router = useRouter();
 
-  useLayoutEffect(() => {
-    if (isSignedIn) {
-      router.push("/onboarding"); // 登录后跳转到 /onboarding
-    }
-  }, [isSignedIn]);
+  // useLayoutEffect(() => {
+  //   if (isSignedIn) {
+  //     router.push("/onboarding"); // 登录后跳转到 /onboarding
+  //   }
+  // }, [isSignedIn]);
   return (
     <>
       <>
