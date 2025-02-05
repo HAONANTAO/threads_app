@@ -41,3 +41,11 @@ export async function updateUser({
     throw new Error(`Failed to create/update user: ${error.message}`);
   }
 }
+
+export async function fetchUser(userID:string) {
+  try {
+    
+  } catch (error) {
+    
+  }
+}
