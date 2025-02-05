@@ -1,5 +1,5 @@
 "use client";
-
+import { useUser } from "@clerk/nextjs"; // Clerk hook
 import React, { ChangeEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,6 +22,7 @@ import { isBase64Image } from "@/lib/utils";
 import { useUploadThing } from "@/lib/uploadthing";
 import { updateUser } from "@/lib/actions/user.actions";
 import { usePathname, useRouter } from "next/navigation";
+
 interface Props {
   user: {
     id: string;
@@ -34,6 +35,8 @@ interface Props {
   btnTitle: string;
 }
 const AccountProfile = ({ user, btnTitle }: Props) => {
+  const { user: clerkUser, isSignedIn } = useUser(); // 获取 Clerk 用户实例
+
   const [files, setFiles] = useState<File[]>([]);
 
   const router = useRouter();
@@ -77,37 +80,60 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
 
   // 2. Define a submit handler.
   const onSubmit = async (values: z.infer<typeof UserValidation>) => {
+    // check
+    if (!isSignedIn) {
+      console.error("the user is not signed in,can not update Clerk info");
+      return;
+    }
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    const blob = values.profile_photo;
 
-    // 是的，通常情况下，加载时的图片（比如显示在页面上的默认占位图或加载图标）并不是 Base64 格式，而是一个 URL 指向一个外部文件或资源。只有在 用户上传图片时，浏览器会将图片转换为 Base64 编码，并通常通过 FileReader.readAsDataURL() 来读取文件，并生成一个 Base64 字符串。
-    const hasImageChanged = isBase64Image(blob);
+    try {
+      const blob = values.profile_photo;
+      // 是的，通常情况下，加载时的图片（比如显示在页面上的默认占位图或加载图标）并不是 Base64 格式，而是一个 URL 指向一个外部文件或资源。只有在 用户上传图片时，浏览器会将图片转换为 Base64 编码，并通常通过 FileReader.readAsDataURL() 来读取文件，并生成一个 Base64 字符串。
+      const hasImageChanged = isBase64Image(blob);
+      let newImageUrl = user.image; // 默认保留原头像
 
-    // 有改动图片就变化显示
-    if (hasImageChanged && files.length > 0) {
-      const imgRes = await startUpload(files); // 使用原始文件对象进行上传
-      console.log(imgRes); // 查看返回的数据结构
+      // 有改动图片就变化显示
+      if (hasImageChanged && files.length > 0) {
+        const imgRes = await startUpload(files); // 使用原始文件对象进行上传
+        console.log(imgRes); // 查看返回的数据结构
+        // 正确解析响应结构
+        if (imgRes?.[0]?.url) {
+          // 注意这里改为访问 .url
+          values.profile_photo = imgRes[0].url;
+          newImageUrl = imgRes[0].url;
+          // **使用 Clerk 的 setProfileImage API 更新头像**
+          // 通过 fetch 获取图片的 Blob
+          const response = await fetch(newImageUrl);
+          const imageBlob = await response.blob();
 
-      // 正确解析响应结构
-      if (imgRes?.[0]?.url) {
-        // 注意这里改为访问 .url
-        values.profile_photo = imgRes[0].url;
-      } else {
-        console.error("上传失败，响应结构:", imgRes);
-        return;
+          // **使用 Clerk 的 setProfileImage API**
+          const imageFile = new File([imageBlob], "profile.jpg", {
+            type: imageBlob.type,
+          });
+          await clerkUser?.setProfileImage({ file: imageFile });
+        } else {
+          console.error("上传失败，响应结构:", imgRes);
+          return;
+        }
       }
+      // 2️⃣ 更新 Clerk 用户信息
+      await clerkUser?.update({
+        ...(values.username && { username: values.username }),
+      });
+      //  update user profile
+      await updateUser({
+        userId: user.id,
+        username: values.username,
+        name: values.name,
+        bio: values.bio,
+        image: values.profile_photo,
+        path: pathname,
+      });
+    } catch (error) {
+      console.error("update user failed:", error);
     }
-
-    //  update user profile
-    await updateUser({
-      userId: user.id,
-      username: values.username,
-      name: values.name,
-      bio: values.bio,
-      image: values.profile_photo,
-      path: pathname,
-    });
 
     // reasonable page jump
     if (pathname === "/profile/edit") {
