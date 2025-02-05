@@ -57,8 +57,20 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     },
   });
   useEffect(() => {
-    console.log("Clerk Metadata:", clerkUser?.unsafeMetadata);
-  }, [clerkUser]);
+    if (clerkUser?.unsafeMetadata) {
+      const name =
+        typeof clerkUser?.unsafeMetadata?.name === "string"
+          ? clerkUser?.unsafeMetadata?.name
+          : "";
+      const bio =
+        typeof clerkUser?.unsafeMetadata?.bio === "string"
+          ? clerkUser?.unsafeMetadata?.bio
+          : "";
+
+      form.setValue("name", name);
+      form.setValue("bio", bio);
+    }
+  }, [clerkUser, form]);
 
   // 图片upload显示
   const handleImage = (
