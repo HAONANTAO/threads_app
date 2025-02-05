@@ -4,10 +4,10 @@ import { redirect } from "next/navigation";
 import { fetchUser } from "@/lib/actions/user.actions";
 const page = async () => {
   const user = await currentUser();
-  console.log(user)
-
   // no user redirect to signin
   if (!user) return null;
+
+  // user informations
   const userInfor = await fetchUser(user.id);
   return (
     <>
