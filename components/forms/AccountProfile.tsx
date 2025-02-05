@@ -57,19 +57,15 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     },
   });
   useEffect(() => {
-    if (clerkUser?.unsafeMetadata) {
-      const name =
-        typeof clerkUser?.unsafeMetadata?.name === "string"
-          ? clerkUser?.unsafeMetadata?.name
-          : "";
-      const bio =
-        typeof clerkUser?.unsafeMetadata?.bio === "string"
-          ? clerkUser?.unsafeMetadata?.bio
-          : "";
+    if (!clerkUser?.unsafeMetadata) return;
 
-      form.setValue("name", name);
-      form.setValue("bio", bio);
-    }
+    const { name = "", bio = "" } = clerkUser.unsafeMetadata as {
+      name?: string;
+      bio?: string;
+    };
+
+    form.setValue("name", typeof name === "string" ? name : "");
+    form.setValue("bio", typeof bio === "string" ? bio : "");
   }, [clerkUser, form]);
 
   // 图片upload显示
