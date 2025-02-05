@@ -119,9 +119,16 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
         }
       }
       // 2️⃣ 更新 Clerk 用户信息
-      await clerkUser?.update({
-        ...(values.username && { username: values.username }),
-      });
+    await clerkUser?.update({
+      ...(values.username && { username: values.username }),
+      unsafeMetadata: {
+        ...clerkUser?.unsafeMetadata, // 先获取原有 metadata，防止覆盖
+        ...(values.name && { name: values.name }),
+        ...(values.bio && { bio: values.bio }),
+      },
+    });
+
+
       //  update user profile
       await updateUser({
         userId: user.id,
