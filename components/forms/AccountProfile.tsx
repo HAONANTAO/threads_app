@@ -1,6 +1,6 @@
 "use client";
 import { useUser } from "@clerk/nextjs"; // Clerk hook
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -43,16 +43,22 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
   const pathname = usePathname();
 
   const { startUpload } = useUploadThing("media");
-  // 1. Define your form.管理表单状态
+
+  // 2. 使用 useForm 设置默认值
+
+  //1. Define your form.管理表单状态
   const form = useForm({
     resolver: zodResolver(UserValidation),
     defaultValues: {
       profile_photo: user.image || "",
-      name: user.name || "",
+      name: (user.name || clerkUser?.unsafeMetadata?.name || "") as string,
       username: user.username || "",
-      bio: user.bio || "",
+      bio: (user.bio || clerkUser?.unsafeMetadata?.bio || "") as string,
     },
   });
+  useEffect(() => {
+    console.log("Clerk Metadata:", clerkUser?.unsafeMetadata);
+  }, [clerkUser]);
 
   // 图片upload显示
   const handleImage = (
@@ -119,16 +125,17 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
         }
       }
       // 2️⃣ 更新 Clerk 用户信息
-    await clerkUser?.update({
-      ...(values.username && { username: values.username }),
-      unsafeMetadata: {
-        ...clerkUser?.unsafeMetadata, // 先获取原有 metadata，防止覆盖
-        ...(values.name && { name: values.name }),
-        ...(values.bio && { bio: values.bio }),
-      },
-    });
+      await clerkUser?.update({
+        ...(values.username ? { username: values.username } : {}), // 确保 username 存在再更新
+        unsafeMetadata: {
+          ...(clerkUser?.unsafeMetadata || {}), // 先获取已有 metadata，防止覆盖
+          ...(values.name ? { name: values.name } : {}), // 仅在 name 存在时更新
+          ...(values.bio ? { bio: values.bio } : {}), // 仅在 bio 存在时更新
+        },
+      });
 
-
+      // reload
+      clerkUser?.reload();
       //  update user profile
       await updateUser({
         userId: user.id,
