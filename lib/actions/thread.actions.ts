@@ -1,3 +1,4 @@
+import Thread from "../models/thread.model";
 import { connectToDB } from "../mongoose";
 
 interface Params {
