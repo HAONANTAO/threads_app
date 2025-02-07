@@ -3,7 +3,7 @@ import { revalidatePath } from "next/cache";
 import Thread from "../models/thread.model";
 import User from "../models/user.model";
 import { connectToDB } from "../mongoose";
-
+import mongoose from "mongoose";
 interface Params {
   text: string;
   author: string;
@@ -21,7 +21,7 @@ export async function createThread({
     // TODO:communityId
     const createdThread = await Thread.create({
       text,
-      author,
+      author: new mongoose.Types.ObjectId(author), // 这里转换回 ObjectId
       community: null,
     });
 

@@ -1,5 +1,4 @@
 "use client";
-import { useUser } from "@clerk/nextjs"; // Clerk hook
 
 import { Button } from "@/components/ui/button";
 import {
