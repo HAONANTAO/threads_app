@@ -19,10 +19,15 @@ import { Textarea } from "../ui/textarea";
 import { usePathname, useRouter } from "next/navigation";
 import { ThreadValidation } from "@/lib/validations/thread";
 
-
 const PostThread = ({ userId }: { userId: string }) => {
   const router = useRouter();
   const pathname = usePathname();
+
+//post
+  const onSubmit = async () => {
+    // await createThread()
+    
+  };
 
   const form = useForm({
     resolver: zodResolver(ThreadValidation),
@@ -33,7 +38,31 @@ const PostThread = ({ userId }: { userId: string }) => {
   });
   return (
     <>
-      <div className="head-text">Post Thread Form</div>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="mt-10 flex flex-col justify-start gap-10">
+          {/* 名字 */}
+          <FormField
+            control={form.control}
+            name="thread"
+            render={({ field }) => (
+              <FormItem className="flex flex-col gap-3 w-full">
+                <FormLabel className="text-base-semibold text-light-2">
+                  Content
+                </FormLabel>
+                <FormControl className="no-focus border border-dark-4 bg-dark-3 text-light-1">
+                  <Textarea rows={15} {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit" className="bg-primary-500">
+            Post Thread
+          </Button> 
+        </form>
+      </Form>
     </>
   );
 };
