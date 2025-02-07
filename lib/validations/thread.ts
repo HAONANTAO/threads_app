@@ -1,6 +1,10 @@
 // import * as z from "zod";
 import { z } from "zod";
 export const ThreadValidation = z.object({
-  thread: z.string().nonempty().min(3, { message: "minimun 3 characters" }),
+  thread: z.string().nonempty().min(3, { message: "minimum 3 characters" }),
   accountId: z.string(),
+});
+
+export const CommentValidation = z.object({
+  thread: z.string().nonempty().min(3, { message: "minimum 3 characters" }),
 });
