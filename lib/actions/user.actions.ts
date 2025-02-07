@@ -45,14 +45,14 @@ export async function updateUser({
 export async function fetchUser(userID: string) {
   try {
     connectToDB();
-
+   
     // 填充（populate）关联数据
     return await User.findOne({ id: userID });
     // .populate({
     //   path:"communities",
     //   model:Community
     // });
-  } catch (error:any) {
+  } catch (error: any) {
     throw new Error(`Failed to fetch user:${error.message}`);
   }
 }
