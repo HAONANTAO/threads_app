@@ -42,10 +42,17 @@ export async function updateUser({
   }
 }
 
-export async function fetchUser(userID:string) {
+export async function fetchUser(userID: string) {
   try {
-    
-  } catch (error) {
-    
+    connectToDB();
+
+    // 填充（populate）关联数据
+    return await User.findOne({ id: userID });
+    // .populate({
+    //   path:"communities",
+    //   model:Community
+    // });
+  } catch (error:any) {
+    throw new Error(`Failed to fetch user:${error.message}`);
   }
 }
