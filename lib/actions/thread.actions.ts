@@ -41,7 +41,21 @@ export async function fetchPosts(pageNumber = 1, pageSize = 20) {
   try {
     connectToDB();
 
+    // calculate the number of posts to skip
+    const skipAmount = (pageNumber - 1) * pageSize;
+
     // fetch the posts that have no parent(top level)
-    const postsQuery = Thread.find({ parentId: { $in: [null, undefined] } });
+    const postsQuery = Thread.find({
+      parentId: { $in: [null, undefined] },
+    })
+      .sort({ createdAt: "desc" })
+      .skip(skipAmount)
+      .limit(pageSize)
+      // 把author的objectid换成对应的具体信息
+      .populate({path:"author",model:User})
+      .populate({path:"children",
+        populate:{path:"author",model:User,
+          select:"_id name parentId image"
+        }});
   } catch (error) {}
 }
