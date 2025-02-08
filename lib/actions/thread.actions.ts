@@ -36,3 +36,12 @@ export async function createThread({
     throw new Error(`createThread error: ${error.message}`);
   }
 }
+
+export async function fetchPosts(pageNumber = 1, pageSize = 20) {
+  try {
+    connectToDB();
+
+    // fetch the posts that have no parent(top level)
+    const postsQuery = Thread.find({ parentId: { $in: [null, undefined] } });
+  } catch (error) {}
+}

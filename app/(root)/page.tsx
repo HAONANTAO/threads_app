@@ -1,17 +1,5 @@
-"use client";
-import {
-  SignInButton,
-  SignUpButton,
-  UserButton,
-  SignedOut,
-  SignedIn,
-  useAuth,
-} from "@clerk/nextjs";
-
-import { useLayoutEffect } from "react";
-import { useRouter } from "next/navigation";
-export default function Home() {
- 
+export default async function Home() {
+  // const result = await fetchPosts();
   return (
     <>
       <>
