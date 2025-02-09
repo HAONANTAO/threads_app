@@ -1,9 +1,10 @@
 import ThreadCard from "@/components/cards/ThreadCard";
+import { fetchThreadById } from "@/lib/actions/thread.actions";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import React from "react";
-
+import Comment from "@/components/forms/Comment";
 const page = async ({ params }: { params: { id: string } }) => {
   if (!params.id) return null;
 
@@ -30,6 +31,9 @@ const page = async ({ params }: { params: { id: string } }) => {
             createdAt={thread.createdAt}
             comments={thread.children}
           />
+        </div>
+        <div className="mt-7">
+          <Comment threadId={thread.id} currentUserImg={user.imageUrl} currentUserId={JSON.stringify(userInfo._id)} />
         </div>
       </section>
     </>
