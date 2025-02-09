@@ -74,3 +74,5 @@ export async function fetchPosts(pageNumber = 1, pageSize = 20) {
     return { posts, isNext };
   } catch (error) {}
 }
+
+export async function fetchThreadById(paramsId: { paramsId: string }) {}
