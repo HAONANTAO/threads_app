@@ -75,4 +75,35 @@ export async function fetchPosts(pageNumber = 1, pageSize = 20) {
   } catch (error) {}
 }
 
-export async function fetchThreadById(paramsId: { paramsId: string }) {}
+export async function fetchThreadById(id: string) {
+  connectToDB();
+  try {
+    // 对应id找thread然后把里面的author提取四个对应数据出来
+    // TODO:populate community
+    // 递归！
+    const thread = await Thread.findById(id)
+      .populate({
+        path: "author",
+        model: User,
+        select: "_id id name image",
+      })
+      .populate({
+        path: "children",
+        populate: [
+          {
+            path: "author",
+            model: User,
+            select: "id _id name parentId image",
+          },
+          {path:"children",
+            model:Thread,
+            populate:{
+              path:"author",
+              model:User,
+              select:"id _id parentId image"
+            }
+          }
+        ],
+      });
+  } catch (error) {}
+}
