@@ -52,10 +52,25 @@ export async function fetchPosts(pageNumber = 1, pageSize = 20) {
       .skip(skipAmount)
       .limit(pageSize)
       // 把author的objectid换成对应的具体信息
-      .populate({path:"author",model:User})
-      .populate({path:"children",
-        populate:{path:"author",model:User,
-          select:"_id name parentId image"
-        }});
+      .populate({ path: "author", model: User })
+      .populate({
+        path: "children",
+        populate: {
+          path: "author",
+          model: User,
+          select: "_id name parentId image",
+        },
+      });
+
+    //
+    const totalPostsCount = await Thread.countDocuments({
+      $in: [null, undefined],
+    });
+    // 用exec()分步执行
+    const posts = await postsQuery.exec();
+
+    // 说明还有后面的page
+    const isNext = totalPostsCount > skipAmount + posts.length;
+    return [posts, isNext];
   } catch (error) {}
 }
