@@ -80,7 +80,7 @@ export async function fetchThreadById(id: string) {
   try {
     // 对应id找thread然后把里面的author提取四个对应数据出来
     // TODO:populate community
-    // 递归！
+    // 递归！！！
     const thread = await Thread.findById(id)
       .populate({
         path: "author",
@@ -95,15 +95,21 @@ export async function fetchThreadById(id: string) {
             model: User,
             select: "id _id name parentId image",
           },
-          {path:"children",
-            model:Thread,
-            populate:{
-              path:"author",
-              model:User,
-              select:"id _id parentId image"
-            }
-          }
+          {
+            path: "children",
+            model: Thread,
+            populate: {
+              path: "author",
+              model: User,
+              select: "id _id parentId image",
+            },
+          },
         ],
-      });
-  } catch (error) {}
+      })
+      .exec();
+
+      return thread
+  } catch (error:any) {
+    throw new Error(`Error fetching thread:${error.message}`)
+  }
 }
