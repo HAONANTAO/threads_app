@@ -52,26 +52,52 @@ const ThreadCard = ({
                   className="cursor-pointer rounded-full"
                 />
               </Link>
-              {/* more space */}
+
+              {/* more space with gray line!自适应*/}
               <div className="thread-card_bar" />
             </div>
 
-            {/* 创作者名字*/}
             <div className="flex w-full flex-col">
+              {/* 创作者名字*/}
               <Link href={`/profile/${author.id}`} className="w-fit">
                 <h4 className="cursor-pointer text-base-semibold text-light-1">
                   {author.name}
                 </h4>
               </Link>
-
+              {/* 内容 */}
               <p className="mt-2 text-small-regular text-light-2">{content}</p>
 
               <div className="mt-5 flex flex-col gap-3">
                 {/* icons of social media */}
+
+                {/* TODO:考虑作另外三个功能 */}
                 <div className="flex gap-3.5">
                   <Image
                     src="/assets/heart-gray.svg"
                     alt="heart"
+                    width={24}
+                    height={24}
+                    className="cursor-pointer object-contain"
+                  />
+                  <Link href={`/thread/${id}`}>
+                    <Image
+                      src="/assets/reply.svg"
+                      alt="reply"
+                      width={24}
+                      height={24}
+                      className="cursor-pointer object-contain"
+                    />
+                  </Link>
+                  <Image
+                    src="/assets/repost.svg"
+                    alt="repost"
+                    width={24}
+                    height={24}
+                    className="cursor-pointer object-contain"
+                  />
+                  <Image
+                    src="/assets/share.svg"
+                    alt="share"
                     width={24}
                     height={24}
                     className="cursor-pointer object-contain"
