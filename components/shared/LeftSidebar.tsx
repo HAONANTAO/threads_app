@@ -6,11 +6,20 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 // @ == root
 import { sidebarLinks } from "@/constants/index";
-const LeftSidebar = () => {
-  const router = useRouter();
-  const pathname = usePathname();
 
-  const { userId } = useAuth();
+const LeftSidebar = () => {
+  const pathname = usePathname();
+  const { userId, isLoaded } = useAuth(); // 获取 userId 和 isLoaded 状态
+
+  // 在用户信息未加载时显示加载中状态
+  if (!isLoaded) {
+    return <div>Loading...</div>; // 可根据需要自定义加载状态
+  }
+
+  // 如果用户未登录，返回一个登录页面
+  if (!userId) {
+    return <div>Please log in to view the sidebar</div>; // 可改为重定向到登录页面
+  }
 
   return (
     <section className="custom-scrollbar leftsidebar">
@@ -22,8 +31,9 @@ const LeftSidebar = () => {
             (pathname.includes(link.route) && link.route.length > 1) ||
             pathname === link.route;
 
+          // 如果路由是 `/profile`，动态构建包含用户 ID 的链接
           if (link.route === "/profile") link.route = `${link.route}/${userId}`;
-          
+
           return (
             <div key={link.label}>
               <Link
