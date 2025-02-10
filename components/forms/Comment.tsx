@@ -37,7 +37,7 @@ const Comment = ({ threadId, currentUserImg, currentUserId }: Props) => {
       path: pathname,
     });
 
-    // clear
+    // clear the form
     form.reset();
   };
 
