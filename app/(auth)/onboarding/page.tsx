@@ -3,7 +3,6 @@ import { currentUser } from "@clerk/nextjs/server";
 
 async function Page() {
   const user = await currentUser();
-  console.log("user", user);
   
   const userData = {
     id: user?.id || "",
