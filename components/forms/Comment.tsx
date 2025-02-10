@@ -18,6 +18,7 @@ import { Input } from "../ui/input";
 import { usePathname, useRouter } from "next/navigation";
 import { CommentValidation } from "@/lib/validations/thread";
 import Image from "next/image";
+import { addCommentToThread } from "@/lib/actions/thread.actions";
 interface Props {
   threadId: string;
   currentUserImg: string;
@@ -27,8 +28,18 @@ const Comment = ({ threadId, currentUserImg, currentUserId }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  //post
-  const onSubmit = async (values: z.infer<typeof CommentValidation>) => {};
+  //post the comment
+  const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
+    await addCommentToThread({
+      threadId: threadId,
+      commentText: values.thread,
+      userId: JSON.parse(currentUserId),
+      path: pathname,
+    });
+
+    // clear
+    form.reset();
+  };
 
   const form = useForm({
     resolver: zodResolver(CommentValidation),
@@ -46,7 +57,7 @@ const Comment = ({ threadId, currentUserImg, currentUserId }: Props) => {
             name="thread"
             render={({ field }) => (
               <FormItem className="flex items-center gap-3 w-full">
-                <FormLabel >
+                <FormLabel>
                   <Image
                     src={currentUserImg}
                     alt="profile image"
@@ -63,7 +74,6 @@ const Comment = ({ threadId, currentUserImg, currentUserId }: Props) => {
                     {...field}
                   />
                 </FormControl>
-              
               </FormItem>
             )}
           />
