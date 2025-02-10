@@ -17,7 +17,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
 import { usePathname, useRouter } from "next/navigation";
 import { CommentValidation } from "@/lib/validations/thread";
-
+import Image from "next/image";
 interface Props {
   threadId: string;
   currentUserImg: string;
@@ -39,19 +39,23 @@ const Comment = ({ threadId, currentUserImg, currentUserId }: Props) => {
   return (
     <>
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="mt-10 flex flex-col justify-start gap-10">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="comment-form">
           {/* 名字 */}
           <FormField
             control={form.control}
             name="thread"
             render={({ field }) => (
-              <FormItem className="flex flex-col gap-3 w-full">
-                <FormLabel className="text-base-semibold text-light-2">
-                  Content
+              <FormItem className="flex items-center gap-3 w-full">
+                <FormLabel >
+                  <Image
+                    src={currentUserImg}
+                    alt="profile image"
+                    width={36}
+                    height={36}
+                    className="rounded-full object-cover"
+                  />
                 </FormLabel>
-                <FormControl className="no-focus border border-dark-4 bg-dark-3 text-light-1">
+                <FormControl className="border-none bg-transparent">
                   <Input
                     type="text"
                     placeholder="Comment..."
@@ -59,12 +63,12 @@ const Comment = ({ threadId, currentUserImg, currentUserId }: Props) => {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+              
               </FormItem>
             )}
           />
-          <Button type="submit" className="bg-primary-500">
-            Post Comment
+          <Button type="submit" className="bg-primary-500 comment-form_btn">
+            Reply
           </Button>
         </form>
       </Form>
