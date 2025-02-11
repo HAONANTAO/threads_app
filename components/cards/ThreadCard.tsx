@@ -71,7 +71,8 @@ const ThreadCard = ({
               {/* 内容 */}
               <p className="mt-2 text-small-regular text-light-2">{content}</p>
 
-              <div className="mt-5 flex flex-col gap-3">
+              <div
+                className={`${isComment && "mb-10"} mt-5 flex flex-col gap-3`}>
                 {/* icons of social media */}
 
                 {/* TODO:考虑作另外三个功能 */}
