@@ -86,6 +86,7 @@ export async function fetchUserPosts(userId: string) {
   }
 }
 
+// TODO:to understand
 export async function fetchUsers({
   userId,
   searchString = "",
