@@ -6,6 +6,7 @@ interface Props {
   accountType: string;
 }
 const ThreadsTab = async ({ currentUserId, accountId, accountType }: Props) => {
+  // fetch the profile threads
   return <div>ThreadsTab</div>;
 };
 
