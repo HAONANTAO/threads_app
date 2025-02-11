@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import User from "../models/user.model";
 import { connectToDB } from "../mongoose";
+import Thread from "../models/thread.model";
 
 interface Params {
   userId: string;
@@ -45,7 +46,7 @@ export async function updateUser({
 export async function fetchUser(userID: string) {
   try {
     connectToDB();
-   
+
     // 填充（populate）关联数据
     return await User.findOne({ id: userID });
     // .populate({
@@ -54,5 +55,32 @@ export async function fetchUser(userID: string) {
     // });
   } catch (error: any) {
     throw new Error(`Failed to fetch user:${error.message}`);
+  }
+}
+
+export async function fetchUserPosts(userId: string) {
+  try {
+    connectToDB();
+
+    // find all threads authored by user with the given id
+
+    // TODO:populate the community
+    const threads = await User.findOne({ id: userId }).populate({
+      path: "threads",
+      model: Thread,
+      populate: {
+        path: "children",
+        model: Thread,
+        populate: {
+          path: "author",
+          model: User,
+          select: "name image id",
+        },
+      },
+    });
+
+    return threads;
+  } catch (error: any) {
+    throw new Error(`fetch user post failed:${error.message}`);
   }
 }
