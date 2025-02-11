@@ -35,7 +35,7 @@ const ProfileHeader = ({
               <h2 className="text-left text-heading3-bold text-light-1">
                 {name}
               </h2>
-              <p>@{username}</p>
+              <p className="text-base-medium text-gray-1">@{username}</p>
             </div>
           </div>
         </div>
