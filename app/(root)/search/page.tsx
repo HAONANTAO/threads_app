@@ -3,6 +3,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { fetchUser, fetchUsers } from "@/lib/actions/user.actions";
 import Image from "next/image";
+import UserCard from "@/components/cards/UserCard";
 const page = async () => {
     const user = await currentUser();
     // no user redirect to signin
@@ -29,8 +30,15 @@ const page = async () => {
         {result.users.length===0?(
           <p className="no-result">No users found</p>
         ):(
-        {result.users.map((user)=>(<>
-          </>))}
+          <>
+          {result.users.map((person)=>
+          <UserCard
+          key={person.id}
+          id={person.id}
+          name={person.name}
+          username={person.username}
+          imgUrl={person.image}
+          personType="User"/>)}</>
         )}
       </div>
     </section>
