@@ -140,3 +140,11 @@ export async function fetchUsers({
     throw new Error(`fetch user failed:${error.message}`);
   }
 }
+
+export async function getActivity(userId: string) {
+  try {
+    connectToDB();
+  } catch (error: any) {
+    throw new Error(`getActivity failed:${error.message}`);
+  }
+}
