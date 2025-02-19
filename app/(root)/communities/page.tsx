@@ -3,7 +3,7 @@ import React from "react";
 const page = async () => {
   return (
     <section>
-      <h1 className="head-text mb-10">community</h1>
+      <h1 className="head-text mb-10">communities</h1>
     </section>
   );
 };
