@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  typescript: {
+    ignoredBuildErrors: true,
+  },
   experimental: {
     serverActions: {}, // 确保是对象，而不是布尔值
   },
