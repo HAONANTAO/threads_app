@@ -1,6 +1,7 @@
 import { Webhook, WebhookRequiredHeaders } from "svix";
-import { NextResponse } from "next/server";
+import { headers } from "next/headers";
 import { IncomingHttpHeaders } from "http";
+import { NextResponse } from "next/server";
 import {
   addMemberToCommunity,
   createCommunity,
@@ -18,7 +19,7 @@ type EventType =
   | "organization.deleted";
 
 type Event = {
-  data: Record<string, string | number | Record<string, string>[]>;
+  data: Record<string, any>;
   object: "event";
   type: EventType;
 };
@@ -26,7 +27,7 @@ type Event = {
 export const POST = async (request: Request) => {
   try {
     const payload = await request.json();
-    const header = request.headers;
+    const header = headers();
 
     const heads = {
       "svix-id": header.get("svix-id"),
@@ -42,86 +43,66 @@ export const POST = async (request: Request) => {
       );
     }
 
+    console.log("Webhook Secret:", process.env.NEXT_CLERK_WEBHOOK_SECRET);
+    console.log("Received Headers:", heads);
+    console.log("Received Payload:", JSON.stringify(payload, null, 2));
+
     const wh = new Webhook(process.env.NEXT_CLERK_WEBHOOK_SECRET);
-    const evnt = wh.verify(
-      JSON.stringify(payload),
-      heads as IncomingHttpHeaders & WebhookRequiredHeaders,
-    ) as Event;
+    let evnt: Event;
 
-    if (!evnt) {
-      return NextResponse.json({ message: "Invalid event" }, { status: 400 });
+    try {
+      evnt = wh.verify(
+        JSON.stringify(payload),
+        heads as IncomingHttpHeaders & WebhookRequiredHeaders,
+      ) as Event;
+    } catch (err) {
+      console.error("Webhook verification failed:", err);
+      return NextResponse.json(
+        { message: "Webhook verification failed", error: String(err) },
+        { status: 400 },
+      );
     }
 
-    const eventType: EventType = evnt.type;
-    console.log("Received event:", eventType, evnt.data);
+    if (!evnt?.data) {
+      console.error("Event data is missing:", evnt);
+      return NextResponse.json(
+        { message: "Event data missing" },
+        { status: 400 },
+      );
+    }
 
-    switch (eventType) {
-      case "organization.created": {
-        const { id, name, slug, logo_url, image_url, created_by } =
-          evnt.data as {
-            id: string;
-            name: string;
-            slug: string;
-            logo_url?: string;
-            image_url?: string;
-            created_by: string;
-          };
+    console.log("Received event:", evnt.type, evnt.data);
 
-        await createCommunity(
-          id,
-          name,
-          slug,
-          logo_url ?? image_url ?? "",
-          "org bio",
-          created_by,
+    if (evnt.type === "organizationMembership.created") {
+      try {
+        const organization = evnt?.data?.organization;
+        const user = evnt?.data?.public_user_data;
+
+        if (!organization?.id || !user?.user_id) {
+          console.error("Invalid organization or user data:", evnt.data);
+          return NextResponse.json(
+            { message: "Invalid data structure" },
+            { status: 400 },
+          );
+        }
+
+        console.log(
+          `Adding member ${user.user_id} to community ${organization.id}`,
         );
-        return NextResponse.json(
-          { message: "Organization created" },
-          { status: 201 },
-        );
-      }
-
-      case "organizationMembership.created": {
-        const { organization, public_user_data } = evnt.data as {
-          organization: { id: string };
-          public_user_data: { user_id: string };
-        };
-
-        await addMemberToCommunity(organization.id, public_user_data.user_id);
+        await addMemberToCommunity(organization.id, user.user_id);
         return NextResponse.json({ message: "Member added" }, { status: 201 });
-      }
-
-      case "organizationMembership.deleted": {
-        const { organization, public_user_data } = evnt.data as {
-          organization: { id: string };
-          public_user_data: { user_id: string };
-        };
-
-        await removeUserFromCommunity(
-          public_user_data.user_id,
-          organization.id,
-        );
+      } catch (err) {
+        console.error("Error adding member:", err.message);
         return NextResponse.json(
-          { message: "Member removed" },
-          { status: 201 },
+          { message: "Internal Server Error" },
+          { status: 500 },
         );
       }
-
-      case "organization.deleted": {
-        const { id } = evnt.data as { id: string };
-        await deleteCommunity(id);
-        return NextResponse.json(
-          { message: "Organization deleted" },
-          { status: 201 },
-        );
-      }
-
-      default:
-        console.warn("Unhandled event type:", eventType);
-        return NextResponse.json({ message: "Event ignored" }, { status: 200 });
     }
+
+    return NextResponse.json({ message: "Event ignored" }, { status: 200 });
   } catch (err) {
-    console.error("Error processing webhook:", err);
+    console.error("Unexpected Error:", err);
     return NextResponse.json(
       { message: "Internal Server Error", error: String(err) },
       { status: 500 },
