@@ -8,13 +8,25 @@ import { profileTabs } from "@/constants";
 import Image from "next/image";
 import ThreadsTab from "@/components/shared/ThreadsTab";
 
-const ProfilePage = async ({ params }: { params: { id: string } }) => {
-  const user = await currentUser();
-  if (!user) return null;
+// 确保 params 类型明确
+interface Params {
+  id: string;
+}
 
+const ProfilePage = async ({ params }: { params: Params }) => {
+  // 获取当前用户
+  const user = await currentUser();
+  if (!user) {
+    return null; // 如果没有用户，返回 null（或可以跳转到登录页面）
+  }
+
+  // 获取用户信息
   const userInfo = await fetchUser(params.id);
 
-  if (!userInfo?.onboarded) redirect("/onboarding");
+  // 如果用户没有完成 onboarding，跳转到 onboarding 页面
+  if (!userInfo?.onboarded) {
+    redirect("/onboarding");
+  }
 
   return (
     <>
