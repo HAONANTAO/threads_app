@@ -1,12 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoredBuildErrors: true,
-  },
   experimental: {
     serverActions: {}, // 确保是对象，而不是布尔值
   },
-  serverExternalPackages: ["mongoose"], // 更新字段名称
   eslint: {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
@@ -31,6 +27,12 @@ const nextConfig = {
         hostname: "placehold.co",
       },
     ],
+  },
+  webpack(config) {
+    // 如果你确实需要在 webpack 配置中引入 mongoose 等包，请在这里做调整
+    config.externals = config.externals || [];
+    config.externals.push("mongoose");
+    return config;
   },
 };
 
