@@ -8,12 +8,14 @@ import { profileTabs } from "@/constants";
 import Image from "next/image";
 import ThreadsTab from "@/components/shared/ThreadsTab";
 const Page = async ({ params }: { params: { id: string } }) => {
+  console.log("Params:", params);
+  const userId = params.id; // 直接获取 id
   const user = await currentUser();
   // no user redirect to signin
   if (!user) return null;
 
   // user information
-  const userInfo = await fetchUser(params.id);
+  const userInfo = await fetchUser(userId);
 
   if (!userInfo?.onboarded) redirect("/onboarding");
 
