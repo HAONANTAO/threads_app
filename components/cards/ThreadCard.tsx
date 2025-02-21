@@ -108,6 +108,7 @@ const ThreadCard = ({
                     className="cursor-pointer object-contain"
                   />
                 </div>
+
                 {/* 这个如果有comment */}
                 {isComment && comments.length > 0 && (
                   <Link href="{`/thread/${id}`}">
@@ -119,6 +120,17 @@ const ThreadCard = ({
               </div>
             </div>
           </div>
+          {/* TODO:Delete thread */}
+          {/* TODO: show comment logos */}
+          {!isComment && community && (
+            <Link href={`/communities/${community.id}`}
+            className="mt-5 flex items-center">
+              <p className="text-subtle-medium text-gray-1">
+                {formateDateString(createdAt)}
+                - {communi}
+              </p>
+            </Link>
+          )}
         </div>
       </article>
     </>
