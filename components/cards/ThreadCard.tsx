@@ -121,6 +121,7 @@ const ThreadCard = ({
               </div>
             </div>
           </div>
+
           {/* TODO:Delete thread */}
           {/* TODO: show comment logos */}
           {!isComment && community && (
