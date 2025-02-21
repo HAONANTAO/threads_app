@@ -1,4 +1,3 @@
-// create the webhooks
 /* eslint-disable camelcase */
 // Resource: https://clerk.com/docs/users/sync-data-to-your-backend
 // Above article shows why we need webhooks i.e., to sync data to our backend
@@ -40,9 +39,9 @@ export const POST = async (request: Request) => {
   const header = headers();
 
   const heads = {
-    "svix-id": (await header).get("svix-id"),
-    "svix-timestamp": (await header).get("svix-timestamp"),
-    "svix-signature": (await header).get("svix-signature"),
+    "svix-id": header.get("svix-id"),
+    "svix-timestamp": header.get("svix-timestamp"),
+    "svix-signature": header.get("svix-signature"),
   };
 
   // Activitate Webhook in the Clerk Dashboard.
