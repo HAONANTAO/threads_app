@@ -8,12 +8,10 @@ import { profileTabs } from "@/constants";
 import Image from "next/image";
 import ThreadsTab from "@/components/shared/ThreadsTab";
 
-const page = async ({ params }: { params: { id: string } }) => {
+const ProfilePage = async ({ params }: { params: { id: string } }) => {
   const user = await currentUser();
-  // no user redirect to signin
   if (!user) return null;
 
-  // user information
   const userInfo = await fetchUser(params.id);
 
   if (!userInfo?.onboarded) redirect("/onboarding");
@@ -73,5 +71,4 @@ const page = async ({ params }: { params: { id: string } }) => {
   );
 };
 
-// 导出该页面的 `getServerSideProps` 用于获取动态参数
-export default page;
+export default ProfilePage;
