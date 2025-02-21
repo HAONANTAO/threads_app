@@ -7,26 +7,15 @@ import { Tabs, TabsList, TabsContent, TabsTrigger } from "@/components/ui/tabs";
 import { profileTabs } from "@/constants";
 import Image from "next/image";
 import ThreadsTab from "@/components/shared/ThreadsTab";
-
-// 确保 params 类型明确
-interface Params {
-  id: string;
-}
-
-const ProfilePage = async ({ params }: { params: Params }) => {
-  // 获取当前用户
+const page = async ({ params }: { params: { id: string } }) => {
   const user = await currentUser();
-  if (!user) {
-    return null; // 如果没有用户，返回 null（或可以跳转到登录页面）
-  }
+  // no user redirect to signin
+  if (!user) return null;
 
-  // 获取用户信息
+  // user information
   const userInfo = await fetchUser(params.id);
 
-  // 如果用户没有完成 onboarding，跳转到 onboarding 页面
-  if (!userInfo?.onboarded) {
-    redirect("/onboarding");
-  }
+  if (!userInfo?.onboarded) redirect("/onboarding");
 
   return (
     <>
@@ -83,4 +72,4 @@ const ProfilePage = async ({ params }: { params: Params }) => {
   );
 };
 
-export default ProfilePage;
+export default page;
