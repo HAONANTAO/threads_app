@@ -181,3 +181,19 @@ export async function getActivity(userId: string) {
     throw error;
   }
 }
+
+export async function fetchTopUsers() {
+  try {
+    connectToDB();
+
+    const topUsers = await User.find()
+      .sort({ createdAt: -1 }) // 按创建时间降序排序，最新的社区在前
+      .limit(3) // 限制返回3个
+      .lean(); // 使用 .lean() 返回普通 JavaScript 对象
+
+    return topUsers;
+  } catch (error) {
+    console.error("Error fetching top communities:", error);
+    throw error;
+  }
+}
