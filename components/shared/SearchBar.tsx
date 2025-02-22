@@ -38,20 +38,23 @@ const SearchBar: React.FC<SearchBarProps> = ({ userId, defaultUsers }) => {
 
   return (
     <>
-      <div className="w-full max-w-4xl  mt-4 flex justify-center">
-        <input
-          type="text"
-          value={searchString}
-          onChange={handleSearchChange}
-          placeholder="Search..."
-          className="w-full p-2 border border-gray-300 rounded-md"
-        />
-        <button
-          onClick={handleSearch}
-          className="mt-2 p-2 bg-blue-500 text-white rounded-md ">
-          Search
-        </button>
+      <div className="w-full max-w-6xl mt-4 flex justify-center">
+        <div className="relative w-full ">
+          <input
+            type="text"
+            value={searchString}
+            onChange={handleSearchChange}
+            placeholder="Search..."
+            className="w-full p-2 pl-4 border border-gray-300 rounded-md"
+          />
+          <button
+            onClick={handleSearch}
+            className="absolute right-1 top-1/2 -translate-y-1/2 px-3 py-1 bg-blue-500 text-white rounded-md">
+            🔍
+          </button>
+        </div>
       </div>
+
       {/* 显示搜索结果 */}
       <div className="mt-14 flex flex-col gap-9">
         {users.length === 0 ? (
