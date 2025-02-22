@@ -302,3 +302,19 @@ export async function deleteCommunity(communityId: string) {
     throw error;
   }
 }
+
+// for right bar suggested communities
+export async function fetchTopCommunities() {
+  try {
+    connectToDB();
+
+    const topCommunities = await Community.find()
+      .sort({ createdAt: -1 }) // 按创建时间降序排序，最新的社区在前
+      .limit(3); // 限制返回3个
+
+    return topCommunities;
+  } catch (error) {
+    console.error("Error fetching top communities:", error);
+    throw error;
+  }
+}
