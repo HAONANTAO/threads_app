@@ -2,6 +2,8 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import { formatDateString } from "@/lib/utils";
+
+import DeleteButton from "../shared/DeleteButton";
 interface Props {
   id: string;
   currentUserId: string;
@@ -108,6 +110,7 @@ const ThreadCard = ({
                     height={24}
                     className="cursor-pointer object-contain"
                   />
+                  <DeleteButton id={id} />
                 </div>
 
                 {/* 这个如果有comment */}
