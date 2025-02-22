@@ -14,14 +14,14 @@ const RightSidebar = async () => {
       <section className="custom-scrollbar rightsidebar">
         {/* Suggested Communities */}
         <div className="flex flex-1 flex-col justify-start">
-          <h3 className="text-heading4-medium text-light-1">
+          <h3 className="text-heading4-medium text-light-1 mt-2">
             Suggested Communities
           </h3>
           <ul className="mt-2">
             {communities.map((community) => (
               <li
                 key={community.id}
-                className="mb-2 p-2 bg-gray-800 rounded-md">
+                className="mb-6 p-2 bg-gray-800 rounded-md">
                 <a
                   href={`/communities/${community.id}`}
                   className="flex items-center gap-2">
@@ -42,7 +42,7 @@ const RightSidebar = async () => {
           <h3 className="text-heading4-medium text-light-1">Suggested Users</h3>
           <ul className="mt-2">
             {users.map((user) => (
-              <li key={user.id} className="mb-2 p-2 bg-gray-800 rounded-md">
+              <li key={user.id} className="mb-6 p-2 bg-gray-800 rounded-md">
                 <a
                   href={`/user/${user.id}`}
                   className="flex items-center gap-2">
