@@ -50,7 +50,7 @@ A key feature of the app is its social connectivity; users can follow other acco
 
 Version 1: the basic user,thread and communities functions
 
-Version 2: make more improvement: social media link, repost, share etc...
+Version 2: make more improvements: social media link, repost, share etc...
 
 # **Prerequisites**：
 
@@ -128,10 +128,122 @@ more features are comming......
 
 (share thread, repost thread, social media......)
 
-
-
-
 # **Project_Architecture**：
+
+/project-root
+
+│── .next
+
+│── .vercel
+
+│── .env.local
+
+│── .gitignore
+
+│── components.json
+
+│── middleware.ts
+
+│── next-end.d.ts
+
+│── next.config.js       # Next.js configuration file
+│── package.json         # Project dependencies and scripts
+
+│── postcss.config.mjg
+
+│── tailwind.config.ts
+
+│── tsconfig.json      
+
+│── package-lockl.json         # Project dependencies and scripts
+
+│── tsconfig.json        # TypeScript configuration
+│── .eslintrc.js         # ESLint configuration
+│── .prettierrc          # Prettier configuration
+│── README.md            # Project documentation
+
+│── /public              # Static assets (images, fonts, etc.)
+
+
+│── /components   # Reusable React components
+
+│──│──cards
+
+│──│── │──CommunityCard.tsx
+
+│──│── │──ThreadCard.tsx
+
+│──│── │──UserCard.tsx
+
+│──│──forms
+
+│──│── │──AccountProfile.tsx
+
+│──│── │──Comment.tsx
+
+│──│── │──PostThread.tsx
+
+│──│──shared
+
+│──│── │──Bottombar.tsx
+
+│──│── │──DeleteButton.tsx
+
+│──│── │──LeftSidebar.tsx
+
+│──│── │──ProfileHeader.tsx
+
+│──│── │──RightSidebar.tsx
+
+│──│── │──SearchBar.tsx
+
+│──│── │──ThreadsTab.tsx
+
+│──│── │──Topbar.tsx
+
+│──│──ui   
+
+│──│── │──button.tsx
+
+│──│── │──form.tsx
+
+│──│── │──input.tsx
+
+│──│── │──label.tsx
+
+│──│── │──tabs.tsx
+
+│──│── │──textarea.tsx   
+
+│── /app
+
+│──│──(auth)
+
+│──│──(root)
+
+│──│──api
+
+│──│──favicon.ico
+
+│──│──globals.css
+
+│── /constants             # Feature-based modules (business logic, API integration)
+
+│──│──index.js
+
+│── /lib               # Custom actions
+
+│──│──actions
+
+│──│──models
+
+│──│──validations
+
+│──│──mongoose.ts
+
+│──│──uploadthing.ts
+
+│──│──utils.ts
 
 
 
