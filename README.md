@@ -14,27 +14,21 @@
 
 # **Table Of Content**:
 
--- [**Description**](#**Description**)
+## Table of Contents
 
--- [**Version**](#**Version**)
+- [Description](#description)
+- [Version](#version)
+- [Prerequisites](#prerequisites)
+- [Quick Start](#Quick_Start)
+- [Features](#features)
+- [Advanced Features](#Advanced_Features)
+- [Project Architecture](#Project_Architecture)
+- [Tech Stack](#Tech_Stack)
+- [Resources](#resources)
+- [Contact Information](#contact-information)
+- [License](#license)
 
--- [**Prerequisites**](#**Prerequisites**)
 
--- [**Quick Start**](#**Quick_Start**)
-
--- [**Features**](#**Features**)
-
--- [**Advanced Features**](#**Advanced_Features**)
-
--- [**Project Architecture**](#**Project_Architecture**)
-
--- [**Tech Stack**](#**Tech_Stack**)
-
--- [**Resources**](#**Resources**)
-
--- [**Contact Information**](#**Contact_Information**)
-
--- [**License**](#**License**)
 
 # **Description**
 
