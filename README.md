@@ -14,27 +14,20 @@
 
 # **Table Of Content**:
 
--- [**Description**](#**Description**)
 
--- [**Version**](#**Version**)
+- [Description](#description)
+- [Version](#version)
+- [Prerequisites](#prerequisites)
+- [Quick Start](#Quick_Start)
+- [Features](#features)
+- [Advanced Features](#Advanced_Features)
+- [Project Architecture](#Project_Architecture)
+- [Tech Stack](#Tech_Stack)
+- [Resources](#resources)
+- [Contact Information](#contact-information)
+- [License](#license)
 
--- [**Prerequisites**](#**Prerequisites**)
 
--- [**Quick Start**](#**Quick_Start**)
-
--- [**Features**](#**Features**)
-
--- [**Advanced Features**](#**Advanced_Features**)
-
--- [**Project Architecture**](#**Project_Architecture**)
-
--- [**Tech Stack**](#**Tech_Stack**)
-
--- [**Resources**](#**Resources**)
-
--- [**Contact Information**](#**Contact_Information**)
-
--- [**License**](#**License**)
 
 # **Description**
 
@@ -281,13 +274,13 @@ video Link:https://www.youtube.com/watch?v=O5cmLDVTgAs
 
 # **Contact Information**：
 
-Aaron(HAONAN) TAO
+## Contact Information
 
-email:873190199@qq.com
+- **Name**: Aaron (HAONAN) TAO
+- **Email**: [873190199@qq.com](mailto:873190199@qq.com)
+- **GitHub**: [HAONANTAO](https://github.com/HAONANTAO)
+- **LinkedIn**: [Aaron Tao](https://www.linkedin.com/in/haonan-tao-aaron)
 
-github:https://github.com/HAONANTAO
-
-linkin:https://www.linkedin.com/in/haonan-tao-aaron
 
 # **License**：
 
