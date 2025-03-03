@@ -14,7 +14,6 @@
 
 # **Table Of Content**:
 
-## Table of Contents
 
 - [Description](#description)
 - [Version](#version)
@@ -275,13 +274,13 @@ video Link:https://www.youtube.com/watch?v=O5cmLDVTgAs
 
 # **Contact Information**：
 
-Aaron(HAONAN) TAO
+## Contact Information
 
-email:873190199@qq.com
+- **Name**: Aaron (HAONAN) TAO
+- **Email**: [873190199@qq.com](mailto:873190199@qq.com)
+- **GitHub**: [HAONANTAO](https://github.com/HAONANTAO)
+- **LinkedIn**: [Aaron Tao](https://www.linkedin.com/in/haonan-tao-aaron)
 
-github:https://github.com/HAONANTAO
-
-linkin:https://www.linkedin.com/in/haonan-tao-aaron
 
 # **License**：
 
