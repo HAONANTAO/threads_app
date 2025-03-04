@@ -7,11 +7,9 @@ import { redirect } from "next/navigation";
 export default async function Home() {
   const result = await fetchPosts(1, 30);
   const user = await currentUser();
-  // if (!user) return null;
-  // console.log("user:", user);
-
+  
   if (!user) {
-    redirect("/sign-in"); // 重定向到登录页
+    redirect("/sign-in"); // redirect to sign-in clerk page
   }
 
   const userInfo = await fetchUser(user.id);
