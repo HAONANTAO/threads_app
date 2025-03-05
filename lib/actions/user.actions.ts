@@ -188,8 +188,7 @@ export async function fetchTopUsers() {
 
     const topUsers = await User.find()
       .sort({ createdAt: -1 }) // 按创建时间降序排序，最新的社区在前
-      .limit(3) // 限制返回3个
-      .lean(); // 使用 .lean() 返回普通 JavaScript 对象
+      .limit(3); // 限制返回3个
 
     return topUsers;
   } catch (error) {

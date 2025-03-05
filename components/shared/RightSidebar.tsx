@@ -9,7 +9,7 @@ const RightSidebar = async () => {
 
     // 获取用户数据
     const users = await fetchTopUsers(); // 你可以根据实际需求修改这个函数
-
+    // console.log("这里信息：", users);
     return (
       <section className="custom-scrollbar rightsidebar">
         {/* Suggested Communities */}
@@ -44,7 +44,7 @@ const RightSidebar = async () => {
             {users.map((user) => (
               <li key={user.id} className="mb-6 p-2 bg-gray-800 rounded-md">
                 <a
-                  href={`/user/${user.id}`}
+                  href={`/profile/${user.id}`}
                   className="flex items-center gap-2">
                   <img
                     src={user.image || "/default-user.png"}

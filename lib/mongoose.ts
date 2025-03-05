@@ -10,7 +10,10 @@ export const connectToDB = async () => {
 
   // continue to connect DB
   try {
-    await mongoose.connect(process.env.MONGODB_URL);
+    await mongoose.connect(process.env.MONGODB_URL, {
+      serverSelectionTimeoutMS: 30000, // 增加连接超时时间为30秒
+      socketTimeoutMS: 30000, // 增加请求超时时间
+    });
 
     isConnected = true;
     console.log("Connected to DB");

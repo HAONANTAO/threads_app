@@ -7,13 +7,13 @@ import { redirect } from "next/navigation";
 export default async function Home() {
   const result = await fetchPosts(1, 30);
   const user = await currentUser();
-  
+
   if (!user) {
     redirect("/sign-in"); // redirect to sign-in clerk page
   }
 
   const userInfo = await fetchUser(user.id);
-  console.log("userInfo:", userInfo);
+  // console.log("userInfo:", result.posts);
   if (!userInfo?.onboarded) {
     // 如果用户未完成入职流程，重定向到入职页面
     redirect("/onboarding");
