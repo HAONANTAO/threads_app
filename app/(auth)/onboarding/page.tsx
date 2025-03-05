@@ -10,12 +10,14 @@ async function Page() {
   if (userInfo?.onboarded) redirect("/");
   const userData = {
     id: user?.id || "",
-    objectId: userInfo._id,
-    username: userInfo? userInfo?.username : user?.username,
-    name: userInfo? userInfo?.name : user?.firstName || "",
-    bio: userInfo? userInfo?.bio :"",
-    image: userInfo? userInfo?.image : user?.imageUrl,
+    objectId: userInfo && userInfo._id ? userInfo._id : "", // 确保 userInfo 和 _id 都不为空
+    username:
+      userInfo && userInfo.username ? userInfo.username : user?.username || "",
+    name: userInfo && userInfo.name ? userInfo.name : user?.firstName || "",
+    bio: userInfo && userInfo.bio ? userInfo.bio : "",
+    image: userInfo && userInfo.image ? userInfo.image : user?.imageUrl,
   };
+
   return (
     <main className="mx-auto flex max-w-3xl flex-col justify-start px-10 py-20">
       <h1 className="head-text">On-Boarding</h1>
