@@ -1,5 +1,6 @@
 # 				***The Mock_Threads_APP***
 https://threads-app-eight-nu.vercel.app/
+<br/>
 www.taohaonan.com
 
 
@@ -34,13 +35,13 @@ www.taohaonan.com
 
 # **Description**
 
-The Mock Threads can do lots of features like the real society application.
 
-The Mock Threads app offers a range of features that mimic the functionality of real social media platforms, providing an engaging and interactive experience for users. Users can create threads, where they can post content, share their thoughts, or ask questions. These threads can be categorized by topics or communities, allowing users to find discussions that align with their interests.
+The Mock Threads app is a dynamic and interactive social media platform designed to replicate the core functionalities of real-world social applications. Built with Next.js 13+, it offers a seamless and optimized user experience with server-side rendering (SSR), static site generation (SSG), and API routes to enhance performance, SEO, and scalability.
+Users can create threads, where they can post content, share their thoughts, or ask questions. These threads can be categorized by topics or communities, allowing users to find discussions that align with their interests.
 
 In addition to creating threads, users can interact with others by liking posts, commenting, and reposting content. The app also includes a feature for sharing posts on external platforms, broadening the reach of popular discussions. The threading system allows for nested replies, making it easy for users to engage in focused conversations.
 
-A key feature of the app is its social connectivity; users can follow other accounts, receive updates on new posts, and engage in private conversations through direct messages. Users can also customize their profiles with personal images and bio information, creating a more personalized experience.
+A key feature of the app is its social connectivity; users can follow other accounts, receive updates on new posts, and engage in private conversations through direct messages.（developing） Users can also customize their profiles with personal images and bio information, creating a more personalized experience.
 
 # **Version**：
 
@@ -277,7 +278,6 @@ video Link:https://www.youtube.com/watch?v=O5cmLDVTgAs
 
 # **Contact Information**：
 
-## Contact Information
 
 - **Name**: Aaron (HAONAN) TAO
 - **Email**: [873190199@qq.com](mailto:873190199@qq.com)
