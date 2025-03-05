@@ -22,6 +22,7 @@ export async function fetchPosts(pageNumber = 1, pageSize = 20) {
     .populate({
       path: "author",
       model: User,
+      select: "_id name parentId image", // Select only _id and username fields of the author
     })
     .populate({
       path: "community",
