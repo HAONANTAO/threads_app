@@ -26,6 +26,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "placehold.co",
       },
+      // 添加 utfs.io
+      {
+        protocol: "https",
+        hostname: "utfs.io",
+      },
     ],
   },
   webpack(config) {
