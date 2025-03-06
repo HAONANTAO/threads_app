@@ -114,12 +114,13 @@ const ThreadCard = ({
                 </div>
 
                 {/* 这个如果有comment */}
-                {isComment && comments.length > 0 && (
-                  <Link href="{`/thread/${id}`}">
-                    <p className="mt-1 text-subtle-medium text-gray-1">
-                      {comments.length} replies{" "}
-                    </p>
-                  </Link>
+                {/* isComment && */}
+                {comments.length > 0 && (
+                  // <Link href="{`/thread/${id}`}">
+                  <p className="ml-4 mt-1 text-subtle-medium text-gray-1">
+                    {comments.length} replies{" "}
+                  </p>
+                  // </Link>
                 )}
               </div>
             </div>
