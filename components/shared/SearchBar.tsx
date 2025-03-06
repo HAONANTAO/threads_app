@@ -43,6 +43,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       pageNumber: 1,
       pageSize: 25,
     });
+    console.log("Fetched users:", result); // 确保数据结构正确
     setUsersLeft(result.users);
   };
 
@@ -82,9 +83,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
         {/* 结果区域 */}
         <div className="mt-4 w-full flex-1 max-w-sm overflow-auto max-h-96 border border-gray-300 rounded-md p-4">
-          <h2 className="text-xl font-semibold mb-4 text-center">Users</h2>
+          <h2 className="text-xl font-semibold mb-4 text-center text-white">
+            Users
+          </h2>
           {usersLeft.length === 0 ? (
-            <p className="text-center">No users found</p>
+            <p className="text-center text-white">No users found</p>
           ) : (
             usersLeft.map((person) => (
               <UserCard
@@ -123,11 +126,13 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
         {/* 结果区域 */}
         <div className="mt-4 w-full flex-1 max-w-sm overflow-auto max-h-96 border border-gray-300 rounded-md p-4">
-          <h2 className="text-xl font-semibold mb-4 text-center">Posts</h2>
+          <h2 className="text-xl font-semibold mb-4 text-center text-white">
+            Posts
+          </h2>
           {loadingRight ? (
-            <p className="text-center">Loading...</p> // 显示加载状态
+            <p className="text-center text-white">Loading...</p> // 显示加载状态
           ) : postsRight.length === 0 ? (
-            <p className="text-center">No posts found</p>
+            <p className="text-center text-white">No posts found</p>
           ) : (
             postsRight.map((post) => (
               <ThreadCard
