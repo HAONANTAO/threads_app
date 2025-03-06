@@ -270,7 +270,7 @@ export async function fetchSearchPosts(searchString = "", limit = 10) {
 
     // 手动填充 author 信息
     for (let post of posts) {
-      const author = await User.findById(post.author).select("_id image"); // 获取作者的 id 和 image
+      const author = await User.findById(post.author).select("_id id image"); // 获取作者的 id 和 image
       post.author = author; // 替换帖子中的 author 字段
     }
 
