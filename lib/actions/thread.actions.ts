@@ -266,12 +266,22 @@ export async function fetchSearchPosts(searchString = "", limit = 10) {
       text: { $regex: safeSearchString, $options: "i" }, // 查找包含搜索字符串的帖子
     })
       .sort({ createdAt: "desc" }) // 按时间倒序排列
-      .limit(limit);
+      .limit(limit)
+      .lean(); // 使用 lean() 让查询结果更快（返回普通对象）
 
-    // 手动填充 author 信息
+    // 手动填充 author 和 community 信息
     for (let post of posts) {
-      const author = await User.findById(post.author).select("_id id image"); // 获取作者的 id 和 image
-      post.author = author; // 替换帖子中的 author 字段
+      // 填充 author 信息
+      const author = await User.findById(post.author).select("_id id image");
+      post.author = author;
+
+      // 填充 community 信息
+      if (post.community) {
+        const community = await Community.findById(post.community).select(
+          "id image name",
+        );
+        post.community = community || null; // 避免查询失败导致报错
+      }
     }
 
     return posts; // 返回查询到的帖子
