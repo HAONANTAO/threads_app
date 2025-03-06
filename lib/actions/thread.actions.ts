@@ -7,6 +7,12 @@ import { connectToDB } from "../mongoose";
 import User from "../models/user.model";
 import Thread from "../models/thread.model";
 import Community from "../models/community.model";
+interface Params {
+  text: string;
+  author: string;
+  communityId: string | null;
+  path: string;
+}
 
 export async function fetchPosts(pageNumber = 1, pageSize = 20) {
   connectToDB();
@@ -22,7 +28,7 @@ export async function fetchPosts(pageNumber = 1, pageSize = 20) {
     .populate({
       path: "author",
       model: User,
-      select: "_id id name parentId image", // Select only _id and username fields of the author
+      select: "_id name parentId image", // Select only _id and username fields of the author
     })
     .populate({
       path: "community",
@@ -33,7 +39,7 @@ export async function fetchPosts(pageNumber = 1, pageSize = 20) {
       populate: {
         path: "author", // Populate the author field within children
         model: User,
-        select: "_id id name parentId image", // Select only _id and username fields of the author
+        select: "_id name parentId image", // Select only _id and username fields of the author
       },
     });
 
@@ -47,13 +53,6 @@ export async function fetchPosts(pageNumber = 1, pageSize = 20) {
   const isNext = totalPostsCount > skipAmount + posts.length;
 
   return { posts, isNext };
-}
-
-interface Params {
-  text: string;
-  author: string;
-  communityId: string | null;
-  path: string;
 }
 
 export async function createThread({
@@ -245,5 +244,39 @@ export async function addCommentToThread({
   } catch (err) {
     console.error("Error while adding comment:", err);
     throw new Error("Unable to add comment");
+  }
+}
+
+// search posts
+// 用于转义正则表达式中的特殊字符
+function escapeRegex(str: string) {
+  return str.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}
+
+// 执行帖子搜索的函数
+
+export async function fetchSearchPosts(searchString = "", limit = 10) {
+  connectToDB(); // 确保连接到数据库
+
+  const safeSearchString = escapeRegex(searchString); // 防止正则表达式错误
+
+  try {
+    // 获取符合条件的帖子
+    const posts = await Thread.find({
+      text: { $regex: safeSearchString, $options: "i" }, // 查找包含搜索字符串的帖子
+    })
+      .sort({ createdAt: "desc" }) // 按时间倒序排列
+      .limit(limit);
+
+    // 手动填充 author 信息
+    for (let post of posts) {
+      const author = await User.findById(post.author).select("_id image"); // 获取作者的 id 和 image
+      post.author = author; // 替换帖子中的 author 字段
+    }
+
+    return posts; // 返回查询到的帖子
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    throw new Error("Could not fetch posts");
   }
 }
