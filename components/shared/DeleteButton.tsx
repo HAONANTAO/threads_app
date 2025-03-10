@@ -9,7 +9,7 @@ interface DeleteButtonProps {
 const DeleteButton: React.FC<DeleteButtonProps> = ({ id }) => {
   const handleDelete = async () => {
     try {
-      await deleteThread(id, "/thread/${id}"); // 调用
+      await deleteThread(id, "/thread/${id}");
       // 可以在此添加删除后的反馈逻辑xxxx
     } catch (error) {
       console.error("Failed to delete thread:", error);
