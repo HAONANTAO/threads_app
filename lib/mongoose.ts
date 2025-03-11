@@ -44,7 +44,7 @@ export const connectToDB = async () => {
       console.log("✅ Connected to MongoDB.");
       isConnecting = false; // 连接成功，解锁
       return;
-    } catch (error) {
+    } catch (error: any) {
       console.error(`Failed to connect to MongoDB: ${error.message}`);
       if (attempt < retries) {
         console.log(`Retrying in ${delay / 1000} seconds...`);
