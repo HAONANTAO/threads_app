@@ -6,14 +6,14 @@ import Image from "next/image";
 import UserCard from "@/components/cards/UserCard";
 import { fetchCommunities } from "@/lib/actions/community.actions";
 import CommunityCard from "@/components/cards/CommunityCard";
-const page = async () => {
+const page = async ({ searchParams }: { searchParams?: { edit?: string } }) => {
   const user = await currentUser();
   // no user redirect to signin
   if (!user) return null;
 
   // user information
   const userInfo = await fetchUser(user.id);
-  if (!userInfo?.onboarded) redirect("/onboarding");
+  if (!userInfo?.onboarded && !searchParams?.edit) redirect("/onboarding");
 
   // fetchCommunities
   const result = await fetchCommunities({

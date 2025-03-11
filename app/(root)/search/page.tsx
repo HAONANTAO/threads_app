@@ -7,12 +7,12 @@ import UserCard from "@/components/cards/UserCard";
 import { fetchPosts } from "@/lib/actions/thread.actions";
 
 // 服务器端逻辑
-const Page = async () => {
+const Page = async ({ searchParams }: { searchParams?: { edit?: string } }) => {
   const user = await currentUser();
   if (!user) return null; // 如果没有登录用户，返回 null
 
   const userInfo = await fetchUser(user.id);
-  if (!userInfo?.onboarded) redirect("/onboarding");
+  if (!userInfo?.onboarded && !searchParams?.edit) redirect("/onboarding");
 
   // 初始用户数据获取（没有搜索时）
   // const UserResult = await fetchUsers({
@@ -24,7 +24,7 @@ const Page = async () => {
 
   // const PostResult = await fetchPosts();
 
-    const UserResult = {users:[]}
+  const UserResult = {users:[]}
 
   const PostResult = { posts: [] };
 

@@ -4,7 +4,7 @@ import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-export default async function Home() {
+export default async function Home({ searchParams }: { searchParams?: { edit?: string } }) {
   const result = await fetchPosts(1, 30);
   const user = await currentUser();
 
@@ -14,8 +14,8 @@ export default async function Home() {
 
   const userInfo = await fetchUser(user.id);
   // console.log("userInfo:", result.posts);
-  if (!userInfo?.onboarded) {
-    // 如果用户未完成入职流程，重定向到入职页面
+  if (!userInfo?.onboarded && !searchParams?.edit) {
+    // 如果用户未完成入职流程且不是编辑模式，重定向到入职页面
     redirect("/onboarding");
   }
   return (

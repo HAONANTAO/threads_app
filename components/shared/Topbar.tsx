@@ -18,7 +18,7 @@ const Topbar = () => {
       </Link>
       <div className="flex items-center gap-1">
         <div className="block md:hidden">
-          {/* new version to use,check whether user signe in or not! */}
+          {/* new version to use,check whether user sign in or not! */}
           <SignedIn>
             <SignOutButton>
               <div className="flex cursor-pointer">
@@ -33,6 +33,23 @@ const Topbar = () => {
           </SignedIn>
         </div>
 
+        {/* add a button for edit user profile */}
+        <div>
+          <a
+            href="/onboarding?edit=true"
+            className="text-light-1 px-4 py-2 rounded-full hover:bg-primary-500/70 hover:text-white transition-all duration-200 ease-in-out hover:scale-105 flex items-center gap-2 group">
+            <Image
+              src="/assets/edit.svg"
+              alt="edit profile"
+              width={20}
+              height={20}
+              className="opacity-70 group-hover:opacity-100 transition-opacity"
+            />
+            <span className="group-hover:text-white transition-colors">
+              Edit Profile
+            </span>
+          </a>
+        </div>
         {/* <UserButton /> */}
         <OrganizationSwitcher
           appearance={{

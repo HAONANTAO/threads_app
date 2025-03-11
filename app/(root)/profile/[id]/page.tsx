@@ -7,7 +7,7 @@ import { Tabs, TabsList, TabsContent, TabsTrigger } from "@/components/ui/tabs";
 import { profileTabs } from "@/constants";
 import Image from "next/image";
 import ThreadsTab from "@/components/shared/ThreadsTab";
-const page = async ({ params }: { params: { id: string } }) => {
+const page = async ({ params, searchParams }: { params: { id: string }, searchParams?: { edit?: string } }) => {
   const user = await currentUser();
   // no user redirect to signin
   if (!user) return null;
@@ -15,7 +15,7 @@ const page = async ({ params }: { params: { id: string } }) => {
   // user information
   const userInfo = await fetchUser(params.id);
 
-  if (!userInfo?.onboarded) redirect("/onboarding");
+  if (!userInfo?.onboarded && !searchParams?.edit) redirect("/onboarding");
 
   return (
     <>

@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { fetchUser, getActivity } from "@/lib/actions/user.actions";
 import Image from "next/image";
 import Link from "next/link";
-const page = async () => {
+const page = async ({ searchParams }: { searchParams?: { edit?: string } }) => {
   // from clerk！
   const user = await currentUser();
   // no user redirect to signin
@@ -11,7 +11,7 @@ const page = async () => {
 
   // user information数据库的
   const userInfo = await fetchUser(user.id);
-  if (!userInfo?.onboarded) redirect("/onboarding");
+  if (!userInfo?.onboarded && !searchParams?.edit) redirect("/onboarding");
 
   // getActivity
   const activity = await getActivity(userInfo._id);
