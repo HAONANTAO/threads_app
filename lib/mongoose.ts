@@ -6,9 +6,6 @@ let isConnecting = false; // connection lock to avoid multiple attempts
 export const connectToDB = async () => {
   mongoose.set("strictQuery", true);
 
-  // 设置连接池大小
-  mongoose.set("maxPoolSize", 10); // 设置最大连接池大小为10
-
   // 检查环境变量
   if (!process.env.MONGODB_URL) {
     console.error("MONGODB_URL environment variable not found.");
@@ -41,6 +38,7 @@ export const connectToDB = async () => {
         socketTimeoutMS: 30000, // 请求超时设置为30秒
         useNewUrlParser: true, // 使用新的 MongoDB 连接方式
         useUnifiedTopology: true, // 使用统一拓扑
+        maxPoolSize: 10, // 设置最大连接池大小
       });
 
       // 连接成功
