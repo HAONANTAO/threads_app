@@ -36,8 +36,6 @@ export const connectToDB = async () => {
       await mongoose.connect(process.env.MONGODB_URL, {
         serverSelectionTimeoutMS: 30000, // 连接超时设置为30秒
         socketTimeoutMS: 30000, // 请求超时设置为30秒
-        useNewUrlParser: true, // 使用新的 MongoDB 连接方式
-        useUnifiedTopology: true, // 使用统一拓扑
         maxPoolSize: 10, // 设置最大连接池大小
       });
 
