@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 
 async function Page() {
   const user = await currentUser();
+  console.log("user is here:", user);
   if (!user) redirect("/sign-in");
   const userInfo = await fetchUser(user.id);
   if (userInfo?.onboarded) redirect("/");
