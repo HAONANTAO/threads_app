@@ -38,6 +38,7 @@ const ThreadCard = ({
   comments,
   isComment,
 }: Props) => {
+  console.log(":author:",author)
   return (
     <>
       <article
