@@ -1,3 +1,9 @@
+/*
+ * @Date: 2025-02-11 18:35:14
+ * @LastEditors: 陶浩南 14639548+haonantao-aaron@user.noreply.gitee.com
+ * @LastEditTime: 2025-03-11 19:00:30
+ * @FilePath: /threads_app/app/(root)/activity/page.tsx
+ */
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { fetchUser, getActivity } from "@/lib/actions/user.actions";
