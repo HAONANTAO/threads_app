@@ -163,7 +163,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - Add or remove users from community memberships.
 
 
-# 🧠 **Advanced Features**
+# 🧠 **Advanced_Features**
 
 
 more features are comming......
