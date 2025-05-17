@@ -4,6 +4,19 @@
 
 A dynamic, interactive social media platform inspired by real-world threaded discussion apps.  
 Built with Next.js 13+, MongoDB, and Clerk authentication, it features SSR/SSG, advanced API routing, nested threads, community management, and direct messaging (in development). Provides a modern, scalable, and performant user experience.
+[![Next.js](https://img.shields.io/badge/Next.js-14.0.0-black)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-18.2.0-blue)](https://reactjs.org/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4.17-38B2AC)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
+[![Clerk](https://img.shields.io/badge/Clerk-6.11.0-3b82f6)](https://clerk.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-6.13.0-47A248)](https://www.mongodb.com/)
+[![Mongoose](https://img.shields.io/badge/Mongoose-8.9.5-880000)](https://mongoosejs.com/)
+[![React Hook Form](https://img.shields.io/badge/React_Hook_Form-7.54.2-EC5990)](https://react-hook-form.com/)
+[![Zod](https://img.shields.io/badge/Zod-3.24.1-2563eb)](https://zod.dev/)
+[![Radix UI](https://img.shields.io/badge/Radix_UI-1.1.3-8B5CF6)](https://www.radix-ui.com/)
+[![UploadThing](https://img.shields.io/badge/UploadThing-7.4.4-f97316)](https://uploadthing.com/)
+[![Lucide React](https://img.shields.io/badge/Lucide_React-0.474.0-10b981)](https://lucide.dev/)
+[![ESLint](https://img.shields.io/badge/ESLint-8.0.0-4B32C3)](https://eslint.org/)
 
 <p align="center">
   <img src="Demo1.png" width="300" alt="Mock_Threads Demo 1"/>
@@ -19,20 +32,22 @@ Built with Next.js 13+, MongoDB, and Clerk authentication, it features SSR/SSG, 
 # **Table Of Content**:
 
 
-- [Description](#description)
-- [Version](#version)
-- [Prerequisites](#prerequisites)
-- [Quick Start](#quick-start)
-- [Features](#features)
-- [Advanced Features](#Advanced_Features)
-- [Project Architecture](#Project_Architecture)
-- [Tech Stack](#tech-stack)
-- [Contact Information](#contact-information)
-- [License](#license)
+- [📝Description](#-description)
+- [🏷️ Version](#version)
+- [🛠️ Prerequisites](#-prerequisites)
+- [🚀Quick Start](#-quick-start)
+- [✨Features](#-features)
+- [🧠Advanced Features](#-Advanced_Features)
+- [🏗️Project Architecture](#-Project_Architecture)
+- [💻Tech Stack](#-tech-stack)
+- [⚖️ License](#-license)
+- [📬 Contact](#-contact)
+- [🙏 Acknowledgements](#-acknowledgements)
 
 
 
-## Description
+## 📝 Description
+
 
 **Mock Threads App** is a dynamic and interactive social media platform that replicates the core functionalities of real-world social applications.  
 Built with Next.js 13+, it delivers a seamless and optimized user experience through server-side rendering (SSR), static site generation (SSG), and efficient API routing for enhanced performance, SEO, and scalability.
@@ -45,7 +60,8 @@ Key social features include following other users, receiving updates on new post
 
 ---
 
-## Version
+## 🏷️ Version
+
 
 - **Version 1:** Basic functionality for users, threads, and communities.
 - **Version 2:** Enhanced features including social media links, repost, share, and more improvements.
@@ -53,7 +69,7 @@ Key social features include following other users, receiving updates on new post
 ---
 
 
-## Prerequisites
+##🛠️ Prerequisites
 
 - **Node.js** v18.0.0 or higher ([download here](https://nodejs.org/))
 - **npm** (comes with Node.js) or **yarn** (`npm install -g yarn`)
@@ -61,7 +77,8 @@ Key social features include following other users, receiving updates on new post
 - **MongoDB** (local or [Atlas](https://www.mongodb.com/cloud/atlas))
 - **.env.local** file for environment variables
 
-## Quick Start
+## 🚀 Quick Start
+
 
 1. **Clone the repository**
 
@@ -124,7 +141,8 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - For more details, see the `package.json` file.
 
 
-## Features
+## ✨ Features
+
 
 ### 👉 Post & Thread Management
 
@@ -145,14 +163,16 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - Add or remove users from community memberships.
 
 
-# **Advanced_Features**：
+# 🧠 **Advanced Features**
+
 
 more features are comming......
 
 (share thread, repost thread, social media......)
 
 
-# **Project_Architecture**：
+# 🏗️ **Project_Architecture**
+
 ```
 /project-root
 
@@ -271,7 +291,8 @@ more features are comming......
 ```
 
 
-## Tech Stack
+## 💻 Tech Stack
+
 
 This project utilizes the following technologies:
 
@@ -300,7 +321,13 @@ This project utilizes the following technologies:
 - **Clsx** (`clsx`): Tiny utility for conditionally constructing `className` strings.
 
 
-## Contact Information
+## ⚖️ License
+
+This project is licensed under the MIT License.  
+See the [LICENSE](LICENSE) file for details.
+
+
+## 📬 Contact Information
 
 - **Name:** Aaron TAO
 - **Email:** [taoaaron5@gamil.com](mailto:taoaaron5@gamil.com)
@@ -308,6 +335,28 @@ This project utilizes the following technologies:
 - **LinkedIn:** [Aaron Tao](https://www.linkedin.com/in/haonan-tao-aaron)
 
 ---
+## 🙏 Acknowledgements
+
+Special thanks to the amazing open source technologies and libraries that make this project possible:
+
+- [Next.js](https://nextjs.org/) – The React framework for production.
+- [React](https://reactjs.org/) – A declarative, efficient, and flexible JavaScript library for building user interfaces.
+- [TailwindCSS](https://tailwindcss.com/) – A utility-first CSS framework for rapid UI development.
+- [TypeScript](https://www.typescriptlang.org/) – Strongly typed programming language that builds on JavaScript.
+- [Clerk](https://clerk.com/) – Complete user management and authentication for modern web apps.
+- [MongoDB](https://www.mongodb.com/) – A flexible, document-oriented NoSQL database.
+- [Mongoose](https://mongoosejs.com/) – Elegant MongoDB object modeling for Node.js.
+- [React Hook Form](https://react-hook-form.com/) – Performant, flexible, and extensible forms with easy React integration.
+- [Zod](https://zod.dev/) – TypeScript-first schema validation with static type inference.
+- [Radix UI](https://www.radix-ui.com/) – Primitives for building high-quality, accessible design systems and web apps.
+- [UploadThing](https://uploadthing.com/) – Effortless file uploads for your web apps.
+- [Lucide React](https://lucide.dev/) – Beautiful & consistent icon toolkit for React.
+- [ESLint](https://eslint.org/) – Pluggable JavaScript linter for code consistency and quality.
+- [PostCSS](https://postcss.org/) – Tool for transforming CSS with JavaScript.
+- [Autoprefixer](https://github.com/postcss/autoprefixer) – Parse CSS and add vendor prefixes automatically.
+- [All open source contributors and the developer community](https://github.com/) – For inspiration, support, and making the ecosystem thrive.
+
+Thank you for visiting my mock-thread web application! 🚀
 
 ## License
 
