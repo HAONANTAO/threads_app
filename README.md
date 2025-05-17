@@ -1,7 +1,6 @@
 # ***The Mock_Threads_APP***
-
-[Live Demo](https://threads-app-eight-nu.vercel.app/)  
-[Portfolio](https://www.aarontao.com/)
+[![Live Demo](https://img.shields.io/badge/Demo-Visit-1abc9c?style=flat-square)](https://threads-app-eight-nu.vercel.app/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-aarontao.com-blue?style=flat-square)](https://www.aarontao.com/)
 
 A dynamic, interactive social media platform inspired by real-world threaded discussion apps.  
 Built with Next.js 13+, MongoDB, and Clerk authentication, it features SSR/SSG, advanced API routing, nested threads, community management, and direct messaging (in development). Provides a modern, scalable, and performant user experience.
