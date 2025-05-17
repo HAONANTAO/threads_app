@@ -153,7 +153,7 @@ more features are comming......
 
 
 # **Project_Architecture**：
-
+```
 /project-root
 
 │── .next
@@ -268,7 +268,7 @@ more features are comming......
 │──│──uploadthing.ts
 
 │──│──utils.ts
-
+```
 
 
 ## Tech Stack
