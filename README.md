@@ -1,9 +1,21 @@
-# 🧵 Mock Threads App
+# ***The Mock_Threads_APP***
 
-[![Live Demo](https://img.shields.io/badge/Demo-Visit-1abc9c?style=flat-square)](https://threads-app-eight-nu.vercel.app/)
-[![Portfolio](https://img.shields.io/badge/Portfolio-taohaonan.com-blue?style=flat-square)](https://www.taohaonan.com/)
+[Live Demo](https://threads-app-eight-nu.vercel.app/)  
+[Portfolio](https://www.aarontao.com/)
 
-A modern, full-featured social media platform inspired by real-world threaded discussion apps.
+A dynamic, interactive social media platform inspired by real-world threaded discussion apps.  
+Built with Next.js 13+, MongoDB, and Clerk authentication, it features SSR/SSG, advanced API routing, nested threads, community management, and direct messaging (in development). Provides a modern, scalable, and performant user experience.
+
+<p align="center">
+  <img src="Demo1.png" width="300" alt="Mock_Threads Demo 1"/>
+  <img src="Demo2.png" width="300" alt="Mock_Threads Demo 2"/>
+  <img src="Demo3.png" width="300" alt="Mock_Threads Demo 3"/>
+</p>
+<p align="center">
+  <img src="Demo4.png" width="300" alt="Mock_Threads Demo 4"/>
+  <img src="Demo5.png" width="300" alt="Mock_Threads Demo 5"/>
+  <img src="Demo6.png" width="300" alt="Mock_Threads Demo 6"/>
+</p>
 
 # **Table Of Content**:
 
