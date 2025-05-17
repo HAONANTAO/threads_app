@@ -1,5 +1,5 @@
 # ***The Mock_Threads_APP***
-[![Live Demo](https://img.shields.io/badge/Demo-Visit-1abc9c?style=flat-square)](https://threads-app-eight-nu.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Demo-Visit-1abc9c?style=flat-square)](https://www.taohaonan.com/)
 [![Portfolio](https://img.shields.io/badge/Portfolio-aarontao.com-blue?style=flat-square)](https://www.aarontao.com/)
 
 A dynamic, interactive social media platform inspired by real-world threaded discussion apps.  
